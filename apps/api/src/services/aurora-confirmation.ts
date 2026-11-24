@@ -1,8 +1,8 @@
 import { createPublicClient, erc20Abi, http, parseEventLogs } from "viem";
-import { monad } from "viem/chains";
+import { mainnet as zecChain } from "viem/chains";
 import { auroraDeposit } from "@zecflow/protocol";
 import type { z } from "zod";
-import { monadUsdc } from "./aurora-provider.js";
+import { zecMainnetToken } from "./aurora-provider.js";
 
 type Deposit = z.infer<typeof auroraDeposit>;
 
@@ -14,7 +14,7 @@ export const createAuroraConfirmation = (rpcUrl: string, fetcher: typeof fetch =
     const pending = { state: "pending", txHash: null, blockNumber: null } as const;
     if (deposit.state !== "SUCCESS") return pending;
     const client = createPublicClient({
-      chain: monad,
+      chain: zecChain,
       transport: http(rpcUrl, {
         retryCount: 0,
         timeout: 8000,
@@ -41,7 +41,7 @@ export const createAuroraConfirmation = (rpcUrl: string, fetcher: typeof fetch =
         const amount = parseEventLogs({ abi: erc20Abi, eventName: "Transfer", logs: receipt.logs })
           .filter(
             (log) =>
-              log.address.toLowerCase() === monadUsdc.toLowerCase() &&
+              log.address.toLowerCase() === zecMainnetToken.toLowerCase() &&
               log.args.to.toLowerCase() === deposit.recipient.toLowerCase(),
           )
           .reduce((total, log) => total + log.args.value, 0n);

@@ -75,7 +75,7 @@ const answer = (status: number, payload: unknown): PlaygroundAnswer => {
     status,
     headers: {
       "content-type": "application/json; charset=utf-8",
-      "x-spoke-mode": "demo",
+      "x-zecflow-mode": "demo",
       "x-request-id": "demo",
     },
     body,

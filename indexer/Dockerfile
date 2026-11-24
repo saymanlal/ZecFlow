@@ -7,7 +7,7 @@ RUN pnpm install --ignore-workspace --frozen-lockfile
 COPY config.yaml schema.graphql tsconfig.json ./
 COPY abis ./abis
 COPY src ./src
-RUN MONAD_RPC_URL=http://127.0.0.1:1 pnpm codegen && pnpm typecheck && groupadd --gid 10001 spoke && useradd --uid 10001 --gid 10001 --create-home spoke && chown -R 10001:10001 /app
+RUN ZCASH_RPC_URL=http://127.0.0.1:1 pnpm codegen && pnpm typecheck && groupadd --gid 10001 zecflow && useradd --uid 10001 --gid 10001 --create-home zecflow && chown -R 10001:10001 /app
 ENV NODE_ENV=production SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt ENVIO_HASURA=false HASURA_GRAPHQL_ENDPOINT=http://127.0.0.1:1/v1/metadata HASURA_GRAPHQL_ROLE=admin HASURA_GRAPHQL_ADMIN_SECRET=unused-hasura-disabled ENVIO_TUI=false ENVIO_PG_SCHEMA=envio ENVIO_PG_SSL_MODE=false ENVIO_PG_MAX_CONNECTIONS=2 ENVIO_INDEXER_PORT=9898 ENVIO_THROTTLE_CHAIN_METADATA_INTERVAL_MILLIS=500 ENVIO_THROTTLE_PRUNE_STALE_DATA_INTERVAL_MILLIS=30000
 USER 10001:10001
 EXPOSE 9898

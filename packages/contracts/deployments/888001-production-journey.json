@@ -263,7 +263,7 @@
   },
   "finalWorkerValidation": {
     "applicationCommit": "15914b5f1cf118c072896b2346f360f46386f6a2",
-    "workerImage": "spoke-indexer:15914b5f1cf118c072896b2346f360f46386f6a2",
+    "workerImage": "zecflow-indexer:15914b5f1cf118c072896b2346f360f46386f6a2",
     "nativeTlsVerification": true,
     "temporaryMountCount": 0,
     "source": "envio",
@@ -337,7 +337,7 @@
     "format": "passed",
     "abiParity": "passed",
     "productionBuild": "passed",
-    "hostedCI": "https://github.com/Enoch208/spoke/actions/runs/38313139691",
+    "hostedCI": "https://github.com/saymanlal/ZecFlow/actions/runs/38313139691",
     "hostedCIResult": "success"
   },
   "journeyCompletedAt": "2026-10-12T21:38:17.997Z",

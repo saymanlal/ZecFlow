@@ -20,14 +20,14 @@ import type { ApiContext, Services } from "../types.js";
 export const reservedHandles = new Set([
   "admin",
   "api",
-  "spoke",
+  "zecflow",
   "support",
   "root",
   "system",
   "merchant",
   "developer",
   "moderator",
-  "usespoke",
+  "usezecflow",
   "official",
 ]);
 export const accountRoutes = (services: Services) => {

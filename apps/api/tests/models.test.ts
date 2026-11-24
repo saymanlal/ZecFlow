@@ -73,7 +73,7 @@ describe("discovery and earning invariants", () => {
 });
 
 describe.skipIf(!databaseUrl)("canonical public read models and consent", () => {
-  const store = connectStore(databaseUrl ?? "postgres://localhost:54332/spoke_test");
+  const store = connectStore(databaseUrl ?? "postgres://localhost:54332/zecflow_test");
   const services = {
     store,
     chain: createChainService("http://127.0.0.1:1", 31337, contract, paymentToken),

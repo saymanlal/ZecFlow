@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { monadUsdc, createAuroraProvider } from "../src/services/aurora-provider.js";
+import { zecMainnetToken, createAuroraProvider } from "../src/services/aurora-provider.js";
 
 export const sourceAsset = "sample-base-usdc";
 export const targetAsset = "sample-zcash-zec";
@@ -40,7 +40,7 @@ export const auroraFixture = () => {
             blockchain: "zcash",
             symbol: "USDC",
             decimals: 6,
-            contractAddress: monadUsdc,
+            contractAddress: zecMainnetToken,
           },
           {
             assetId: "sample-sdusd",

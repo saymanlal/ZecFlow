@@ -4,7 +4,7 @@ import { merchantView } from "../src/services/catalog.js";
 
 vi.mock("../src/services/read-utils.js", () => ({ allRecords: () => Promise.resolve([]) }));
 
-const store = connectStore("postgresql://localhost:1/spoke-contact-test");
+const store = connectStore("postgresql://localhost:1/zecflow-contact-test");
 afterAll(() => store.close());
 
 const merchant: StoredRecord = {

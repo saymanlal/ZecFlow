@@ -166,7 +166,7 @@ export const linksReads = {
     return {
       eligibility,
       nodeId: existing?.id ?? null,
-      enforcedBy: campaign.inviteOnly ? "contract" : "spoke",
+      enforcedBy: campaign.inviteOnly ? "contract" : "zecflow",
       budgetState:
         campaign.status === "unfunded"
           ? "unfunded"

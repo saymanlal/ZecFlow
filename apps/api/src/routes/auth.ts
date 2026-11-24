@@ -14,7 +14,7 @@ import type { Services } from "../types.js";
 export const authRoutes = (services: Services) => {
   const app = router();
   const { store, chain } = services;
-  const cookieName = services.production ? "__Host-spoke_session" : "spoke_session";
+  const cookieName = services.production ? "__Host-zecflow_session" : "zecflow_session";
   route(app, services, "POST", "/auth/challenge", "public", async (c) => {
     if (c.req.header("origin") !== services.webOrigin)
       throw new ApiProblem(403, "NOT_AUTHORIZED", "Sign-in origin is not allowed.");

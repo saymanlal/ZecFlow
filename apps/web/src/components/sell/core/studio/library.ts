@@ -10,7 +10,7 @@ const byCreated = (a: WireTemplate, b: WireTemplate) => a.createdAt.localeCompar
 export const myTemplates = (wire: readonly WireTemplate[], token: TokenLike): LibraryTemplate[] => {
   const families = new Map<string, WireTemplate[]>();
   for (const template of wire) {
-    if (template.id.startsWith("spoke-")) continue;
+    if (template.id.startsWith("zecflow-")) continue;
     const family = families.get(template.name) ?? [];
     family.push(template);
     families.set(template.name, family);

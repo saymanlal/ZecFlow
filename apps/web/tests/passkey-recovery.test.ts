@@ -19,7 +19,7 @@ vi.mock("@category-labs/mera", async (original) => ({
   decryptSecretVaultWithPasskey: ceremonies.decrypt,
 }));
 
-const credentialId = Buffer.from("spoke-test-credential").toString("base64url");
+const credentialId = Buffer.from("zecflow-test-credential").toString("base64url");
 const vault = {
   version: 1,
   credential: { credentialId, transports: ["internal"] },
@@ -110,7 +110,7 @@ describe("recovering the same account with passkeys", () => {
     const added = await unlockPasskey(false, client);
     expect(added.account.address).toBe(original.account.address);
     expect(source.every((value) => value === 0)).toBe(true);
-    expect(JSON.parse(storage.get("spoke-passkey") ?? "null")).toEqual({
+    expect(JSON.parse(storage.get("zecflow-passkey") ?? "null")).toEqual({
       credentialId,
       transports: ["internal"],
       kind: "added",

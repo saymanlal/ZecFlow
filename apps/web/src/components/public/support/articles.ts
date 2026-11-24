@@ -15,7 +15,7 @@ export const topics: readonly Topic[] = [
     title: "Getting started",
     articles: [
       {
-        slug: "what-is-spoke",
+        slug: "what-is-zecflow",
         title: "What is ZecFlow?",
         body: "Merchants fund a reward for real sales. People share products through links that branch from person to person. When a sale settles, everyone on its path gets the share the campaign promised.",
         link: { label: "How ZecFlow works", href: routes.howItWorks },

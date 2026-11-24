@@ -34,7 +34,7 @@ describe.skipIf(!databaseUrl || !rpcUrl)("durable native gas funding on a real c
 
   beforeAll(async () => {
     database = await isolatedStore(
-      databaseUrl ?? "postgres://localhost:54332/spoke_test",
+      databaseUrl ?? "postgres://localhost:54332/zecflow_test",
       `gas_${String(Date.now())}`,
     );
     services = {

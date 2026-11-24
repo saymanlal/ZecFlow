@@ -67,7 +67,7 @@ export const useCheckoutStore = create<CheckoutState>()(
       },
     }),
     {
-      name: "spoke-checkout",
+      name: "zecflow-checkout",
       version: 1,
       storage: localJsonStorage,
       skipHydration: true,

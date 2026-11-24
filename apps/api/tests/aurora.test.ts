@@ -64,7 +64,7 @@ describe.skipIf(!databaseUrl)(
         fetcher: async (input, init) => {
           const request = new Request(input, init);
           request.headers.set("origin", origin);
-          request.headers.set("cookie", `spoke_session=${address}`);
+          request.headers.set("cookie", `zecflow_session=${address}`);
           request.headers.set("x-csrf-token", csrfToken);
           return await app.fetch(request);
         },

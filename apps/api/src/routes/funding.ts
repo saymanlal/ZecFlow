@@ -17,7 +17,7 @@ export const fundingRoutes = (services: Services) => {
   });
   route(app, services, "POST", "/funding/gas", "session", async (c) => {
     await services.store.rate(`gas:${accountId(c)}`, 5, 60);
-    const cookieName = services.production ? "__Host-spoke_device" : "spoke_device";
+    const cookieName = services.production ? "__Host-zecflow_device" : "zecflow_device";
     const saved = getCookie(c, cookieName);
     const device = saved && /^[\da-f]{64}$/.test(saved) ? saved : randomBytes(32).toString("hex");
     setCookie(c, cookieName, device, {

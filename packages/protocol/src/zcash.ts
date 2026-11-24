@@ -138,5 +138,5 @@ export const encodeAttributionMemo = ({
 export const formatZatoshi = (zatoshi: bigint): string => {
   const whole = zatoshi / 100_000_000n;
   const frac = (zatoshi % 100_000_000n).toString().padStart(8, "0").replace(/0+$/, "");
-  return frac ? `${whole}.${frac}` : `${whole}`;
+  return frac ? `${String(whole)}.${frac}` : String(whole);
 };

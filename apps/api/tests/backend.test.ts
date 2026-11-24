@@ -17,7 +17,7 @@ const challengeSchema = z.object({ data: z.object({ message: z.string(), nonce: 
 const sessionSchema = z.object({ data: z.object({ csrfToken: z.string(), address: z.string() }) });
 
 describe.skipIf(!databaseUrl)("persistent API security and lifecycle", () => {
-  const store = connectStore(databaseUrl ?? "postgres://localhost:54332/spoke_test");
+  const store = connectStore(databaseUrl ?? "postgres://localhost:54332/zecflow_test");
   const services = {
     store,
     chain: createChainService("http://127.0.0.1:1", 31337, null, token),

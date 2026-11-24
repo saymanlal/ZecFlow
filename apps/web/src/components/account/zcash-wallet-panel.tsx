@@ -76,7 +76,9 @@ export function ZcashWalletPanel() {
             <input
               type="text"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={(e) => {
+                setAddress(e.target.value);
+              }}
               placeholder="utest1... or u1..."
               className="border-line bg-soft text-ink focus:border-lime mt-1 w-full rounded-xl border px-3 py-2 font-mono text-xs outline-none"
             />
@@ -87,7 +89,9 @@ export function ZcashWalletPanel() {
               <input
                 type="text"
                 value={amountZec}
-                onChange={(e) => setAmountZec(e.target.value)}
+                onChange={(e) => {
+                  setAmountZec(e.target.value);
+                }}
                 className="border-line bg-soft text-ink focus:border-lime mt-1 w-full rounded-xl border px-3 py-2 font-mono text-xs outline-none"
               />
             </label>
@@ -96,7 +100,9 @@ export function ZcashWalletPanel() {
               <input
                 type="text"
                 value={campaignId}
-                onChange={(e) => setCampaignId(e.target.value)}
+                onChange={(e) => {
+                  setCampaignId(e.target.value);
+                }}
                 className="border-line bg-soft text-ink focus:border-lime mt-1 w-full rounded-xl border px-3 py-2 font-mono text-xs outline-none"
               />
             </label>
@@ -105,7 +111,9 @@ export function ZcashWalletPanel() {
               <input
                 type="text"
                 value={nodeId}
-                onChange={(e) => setNodeId(e.target.value)}
+                onChange={(e) => {
+                  setNodeId(e.target.value);
+                }}
                 className="border-line bg-soft text-ink focus:border-lime mt-1 w-full rounded-xl border px-3 py-2 font-mono text-xs outline-none"
               />
             </label>

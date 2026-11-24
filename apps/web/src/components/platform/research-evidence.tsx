@@ -5,7 +5,7 @@ import { formatDateTime } from "@/lib/format";
 
 type Research = NonNullable<ClientOutput<"insights.forDistributor">["research"]>;
 const explorers: Record<string, string> = {
-  monad: "https://monadvision.com",
+  zcash: "https://explorer.zec.rocks",
   ethereum: "https://etherscan.io",
   base: "https://basescan.org",
   arbitrum: "https://arbiscan.io",

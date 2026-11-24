@@ -40,7 +40,7 @@ export function StudioPage() {
     <StudioWorkspace
       key={`${selected?.id ?? "new"}:${String(generation)}`}
       selected={selected}
-      spoke={startingPoints}
+      zecflow={startingPoints}
       mine={mine}
       categories={categories.data ?? []}
       token={token}

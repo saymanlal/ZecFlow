@@ -73,7 +73,7 @@ export const useTxStore = create<TxStoreState>()(
       },
     }),
     {
-      name: "spoke-tx",
+      name: "zecflow-tx",
       version: 1,
       storage: localJsonStorage,
       skipHydration: true,

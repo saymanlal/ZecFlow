@@ -54,7 +54,7 @@ export const accountDataRoutes = (services: Services) => {
     const row = await store.require("export", z.uuid().parse(c.req.param("id")), accountId(c));
     if (Date.parse(z.string().parse(row.payload.expiresAt)) <= Date.now())
       throw new ApiProblem(410, "NOT_FOUND", "Export has expired.");
-    c.header("content-disposition", "attachment; filename=spoke-account.json");
+    c.header("content-disposition", "attachment; filename=zecflow-account.json");
     return c.json({
       exportedAt: row.createdAt.toISOString(),
       chainId: chain.chainId,

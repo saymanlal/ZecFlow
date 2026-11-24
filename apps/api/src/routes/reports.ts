@@ -246,7 +246,7 @@ export const reportRoutes = (services: Services) => {
     return new Response(z.string().parse(row.payload.content), {
       headers: {
         "content-type": format === "json" ? "application/json" : "text/csv; charset=utf-8",
-        "content-disposition": `attachment; filename="spoke-${row.id}.${format}"`,
+        "content-disposition": `attachment; filename="zecflow-${row.id}.${format}"`,
         "cache-control": "no-store",
         "x-content-type-options": "nosniff",
       },

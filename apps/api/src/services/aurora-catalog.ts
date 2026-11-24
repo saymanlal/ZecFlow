@@ -1,7 +1,7 @@
 import { auroraConfig, addressString } from "@zecflow/protocol";
 import type { z } from "zod";
 import { ApiProblem } from "../http/problem.js";
-import { auroraNetworks, monadUsdc, type AuroraProvider } from "./aurora-provider.js";
+import { auroraNetworks, zecMainnetToken, type AuroraProvider } from "./aurora-provider.js";
 
 export const createAuroraCatalog = (provider: AuroraProvider | null) => {
   let cached: { value: z.infer<typeof auroraConfig>; expiresAt: number } | undefined;
@@ -36,7 +36,7 @@ export const createAuroraCatalog = (provider: AuroraProvider | null) => {
         asset.chainId === 143 &&
         asset.symbol === "USDC" &&
         asset.decimals === 6 &&
-        asset.contractAddress?.toLowerCase() === monadUsdc.toLowerCase(),
+        asset.contractAddress?.toLowerCase() === zecMainnetToken.toLowerCase(),
     );
     if (destinations.length !== 1)
       throw new ApiProblem(

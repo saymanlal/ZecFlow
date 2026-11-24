@@ -163,7 +163,7 @@ export function useNotebook(scope: NoteScope) {
       );
       const link = document.createElement("a");
       link.href = url;
-      link.download = `spoke-private-notes-${scope.campaignId}.json`;
+      link.download = `zecflow-private-notes-${scope.campaignId}.json`;
       link.click();
       setTimeout(() => {
         URL.revokeObjectURL(url);

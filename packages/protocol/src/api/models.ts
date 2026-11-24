@@ -492,7 +492,7 @@ export const joinPreview = z.object({
     "not_deployed",
   ]),
   nodeId: protocolId.nullable(),
-  enforcedBy: z.enum(["contract", "spoke"]),
+  enforcedBy: z.enum(["contract", "zecflow"]),
   budgetState: z.enum(["funded", "unfunded", "exhausted"]),
   depth: z.number().int().nonnegative(),
   ancestorsAbove: z.array(pathEntry),

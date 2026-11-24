@@ -29,7 +29,7 @@ export const useDemoStore = create<DemoState>()(
       },
     }),
     {
-      name: "spoke-demo",
+      name: "zecflow-demo",
       version: 2,
       storage: localJsonStorage,
       skipHydration: true,

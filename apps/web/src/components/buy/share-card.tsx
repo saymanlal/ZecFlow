@@ -11,7 +11,7 @@ import { routeTo } from "@/lib/routes";
 import { useUiStore } from "@/lib/stores/ui";
 import { purchaseCopy } from "./copy/purchase";
 
-const hiddenKey = (saleId: string) => `spoke-share-hidden:${saleId}`;
+const hiddenKey = (saleId: string) => `zecflow-share-hidden:${saleId}`;
 
 const readHidden = (saleId: string) => {
   try {

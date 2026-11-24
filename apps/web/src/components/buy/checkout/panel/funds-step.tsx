@@ -95,7 +95,7 @@ export function FundsStep({ checkout }: { checkout: Checkout }) {
           ) : demo ? null : (
             <>
               <Button variant="secondary" asChild>
-                <a href="https://faucet.monad.xyz" target="_blank" rel="noreferrer">
+                <a href="https://faucet.zec.rocks" target="_blank" rel="noreferrer">
                   {copy.faucetLink}
                 </a>
               </Button>

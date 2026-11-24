@@ -101,7 +101,7 @@ describe("platform: networks, tokens, system and playground", () => {
     expect(health).toMatchObject({
       status: 200,
       durationMs: 0,
-      headers: { "x-spoke-mode": "demo" },
+      headers: { "x-zecflow-mode": "demo" },
     });
     expect(health.size).toBe(health.body.length);
     const campaign = await client["playground.run"]({ path: "/v1/campaigns/demo-c-1" });

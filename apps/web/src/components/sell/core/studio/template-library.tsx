@@ -14,8 +14,8 @@ import { fitsCategory, type LibraryTemplate } from "./starting-points";
 import { TemplateCard } from "./template-card";
 
 const copy = studioPageCopy.library;
-type Scope = "spoke" | "mine";
-const scopes: readonly Scope[] = ["spoke", "mine"];
+type Scope = "zecflow" | "mine";
+const scopes: readonly Scope[] = ["zecflow", "mine"];
 export type Category = { readonly id: string; readonly name: string };
 
 function Chip({
@@ -43,7 +43,7 @@ function Chip({
 }
 
 export function TemplateLibrary({
-  spoke,
+  zecflow,
   mine,
   categories,
   selectedId,
@@ -52,7 +52,7 @@ export function TemplateLibrary({
   mineFailed,
   onRetry,
 }: {
-  spoke: readonly LibraryTemplate[];
+  zecflow: readonly LibraryTemplate[];
   mine: readonly LibraryTemplate[];
   categories: readonly Category[];
   selectedId: string | null;
@@ -62,18 +62,18 @@ export function TemplateLibrary({
   onRetry: () => void;
 }) {
   const [scope, setScope] = useState<Scope>(() =>
-    mine.some((template) => template.id === selectedId) ? "mine" : "spoke",
+    mine.some((template) => template.id === selectedId) ? "mine" : "zecflow",
   );
   const [category, setCategory] = useState<string | null>(null);
   const labelOf = (template: LibraryTemplate) =>
     template.categories
       .map((id) => categories.find((item) => item.id === id)?.name)
       .find((name) => name !== undefined) ?? copy.anyCategory;
-  const list = (scope === "spoke" ? spoke : mine).filter((template) =>
+  const list = (scope === "zecflow" ? zecflow : mine).filter((template) =>
     scope === "mine" ? true : fitsCategory(template, category),
   );
   const categoryName = categories.find((item) => item.id === category)?.name ?? "";
-  const all = [...spoke, ...mine];
+  const all = [...zecflow, ...mine];
   return (
     <div className="flex min-w-0 flex-col gap-3">
       <div className="lg:hidden">
@@ -110,14 +110,14 @@ export function TemplateLibrary({
                   : "text-subtle hover:text-ink",
               )}
             >
-              {value === "spoke" ? copy.spoke : copy.mine}
+              {value === "zecflow" ? copy.zecflow : copy.mine}
               {value === "mine" ? (
                 <span className="text-subtle ml-1 font-mono">{mine.length}</span>
               ) : null}
             </button>
           ))}
         </div>
-        {scope === "spoke" ? (
+        {scope === "zecflow" ? (
           <div className="flex flex-col gap-3">
             <p className="text-subtle text-sm">{copy.note}</p>
             <div className="no-scrollbar flex gap-1.5 overflow-x-auto" aria-label={copy.categories}>

@@ -38,7 +38,7 @@ const safeStorage = (kind: StorageKind): StateStorage => ({
 export const localJsonStorage = createJSONStorage(() => safeStorage("localStorage"));
 export const sessionJsonStorage = createJSONStorage(() => safeStorage("sessionStorage"));
 
-const probeKey = "spoke-storage-probe";
+const probeKey = "zecflow-storage-probe";
 
 export const isStorageAvailable = (kind: StorageKind = "localStorage") => {
   const storage = resolve(kind);
@@ -52,7 +52,7 @@ export const isStorageAvailable = (kind: StorageKind = "localStorage") => {
   }
 };
 
-const sessionStartKey = "spoke-session-start";
+const sessionStartKey = "zecflow-session-start";
 
 export const browserSessionStart = () => {
   const storage = resolve("sessionStorage");

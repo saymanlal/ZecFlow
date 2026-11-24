@@ -19,7 +19,7 @@ const envelope = () => ({
   chainId: 888001,
   campaignId: "1",
   version: 1 as const,
-  namespace: "spoke.campaign-notes.v1" as const,
+  namespace: "zecflow.campaign-notes.v1" as const,
   credentialId,
   revision: randomUUID(),
   savedAt: new Date().toISOString(),
@@ -78,7 +78,7 @@ describe.skipIf(!url)("encrypted workspace boundary and concurrency", () => {
     app.request(route, {
       method,
       headers: {
-        cookie: `spoke_session=${wallet}`,
+        cookie: `zecflow_session=${wallet}`,
         origin,
         "x-csrf-token": csrf,
         "content-type": "application/json",
@@ -95,7 +95,7 @@ describe.skipIf(!url)("encrypted workspace boundary and concurrency", () => {
       .update(sessions)
       .set({ hash: digest("new-session") })
       .where(sql`address=${address}`);
-    const restored = await app.request(path, { headers: { cookie: "spoke_session=new-session" } });
+    const restored = await app.request(path, { headers: { cookie: "zecflow_session=new-session" } });
     expect(await restored.json()).toMatchObject({ data: { note } });
     const records = await database.store.list("encrypted-workspace", address);
     expect(Object.keys(records.items[0]?.payload ?? {}).sort()).toEqual(Object.keys(note).sort());

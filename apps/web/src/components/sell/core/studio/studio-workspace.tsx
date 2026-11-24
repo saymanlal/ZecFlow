@@ -26,7 +26,7 @@ export type StudioToken = TokenLike & { readonly address: string };
 
 export function StudioWorkspace({
   selected,
-  spoke,
+  zecflow,
   mine,
   categories,
   token,
@@ -36,7 +36,7 @@ export function StudioWorkspace({
   onChoose,
 }: {
   selected: LibraryTemplate | null;
-  spoke: readonly LibraryTemplate[];
+  zecflow: readonly LibraryTemplate[];
   mine: readonly LibraryTemplate[];
   categories: readonly Category[];
   token: StudioToken;
@@ -91,7 +91,7 @@ export function StudioWorkspace({
       <div className="grid items-start gap-6 lg:grid-cols-[272px_minmax(0,1fr)] xl:grid-cols-[272px_minmax(0,1fr)_320px]">
         <aside className="min-w-0 lg:sticky lg:top-24">
           <TemplateLibrary
-            spoke={spoke}
+            zecflow={zecflow}
             mine={mine}
             categories={categories}
             selectedId={selected?.id ?? null}

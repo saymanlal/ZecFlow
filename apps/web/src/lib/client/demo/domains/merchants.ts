@@ -10,7 +10,7 @@ import { countsOf, proceedsLedgerOf, rewardLedgerOf } from "../views/settlement"
 
 const reservedSlugs = new Set([
   "admin",
-  "spoke",
+  "zecflow",
   "support",
   "help",
   "api",
@@ -196,8 +196,8 @@ export const merchantsWrites = {
         verifiedTier(merchant, now) === "unverified" ? ("pending" as const) : ("verified" as const),
       record: {
         type: "TXT" as const,
-        name: `_spoke.${input.domain}`,
-        value: `spoke-verify=${sampleHash(`verify:${merchant.id}:${input.domain}`).slice(2, 34)}`,
+        name: `_zecflow.${input.domain}`,
+        value: `zecflow-verify=${sampleHash(`verify:${merchant.id}:${input.domain}`).slice(2, 34)}`,
       },
     };
   },

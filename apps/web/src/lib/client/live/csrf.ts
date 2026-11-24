@@ -1,4 +1,4 @@
-const key = "spoke-csrf";
+const key = "zecflow-csrf";
 
 const storage = () => {
   try {

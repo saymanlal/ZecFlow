@@ -63,8 +63,8 @@ export default function QrDialog({ props, isTop, close }: ModalComponentProps<"M
     const node = svg.current;
     const blob = node ? svgBlob(node) : null;
     if (!blob) return;
-    if (kind === "svg") save(blob, `spoke-${code}.svg`);
-    else pngFrom(blob, `spoke-${code}.png`);
+    if (kind === "svg") save(blob, `zecflow-${code}.svg`);
+    else pngFrom(blob, `zecflow-${code}.png`);
   };
   return (
     <Dialog

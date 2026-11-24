@@ -139,7 +139,7 @@ export function AuroraDeposit({
       {deposit.confirmation.txHash ? (
         <a
           className="text-ink underline"
-          href={`https://monadvision.com/tx/${deposit.confirmation.txHash}`}
+          href={`https://explorer.zec.rocks/tx/${deposit.confirmation.txHash}`}
           target="_blank"
           rel="noreferrer"
         >

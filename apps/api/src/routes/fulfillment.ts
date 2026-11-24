@@ -78,14 +78,14 @@ export const fulfillmentRoutes = (services: Services) => {
       return c.redirect(target, 302);
     }
     if (product.payload.fulfillmentMode === "manual") {
-      c.header("content-disposition", "attachment; filename=spoke-delivery.txt");
+      c.header("content-disposition", "attachment; filename=zecflow-delivery.txt");
       return c.text(deliverable);
     }
     const { row, bytes } = await loadAsset(services, deliverable);
     if (row.owner !== product.owner)
       throw new ApiProblem(403, "NOT_AUTHORIZED", "Deliverable belongs to another merchant.");
     c.header("content-type", "application/octet-stream");
-    c.header("content-disposition", "attachment; filename=spoke-product");
+    c.header("content-disposition", "attachment; filename=zecflow-product");
     return c.body(new Uint8Array(bytes));
   });
   return app;

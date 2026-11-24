@@ -19,10 +19,10 @@ The archive includes compiled ESM/CommonJS and TypeScript declarations. It bundl
 ```ts
 import { createZecFlowClient, ZecFlowApiError } from "@zecflow/sdk";
 
-const spoke = createZecFlowClient({ baseUrl: "https://api.usezecflow.xyz" });
+const zecflow = createZecFlowClient({ baseUrl: "https://api.usezecflow.xyz" });
 
 try {
-  const receipt = await spoke.read("receipts.get", { saleId: "4", chainId: 888001 });
+  const receipt = await zecflow.read("receipts.get", { saleId: "4", chainId: 888001 });
   console.log(receipt);
 } catch (error) {
   if (error instanceof ZecFlowApiError) {
@@ -38,7 +38,7 @@ Pass the API origin, without `/v1`. CommonJS consumers can use `require("@zecflo
 ## Retain freshness and chain context
 
 ```ts
-const result = await spoke.readEnvelope("receipts.get", { saleId: "4", chainId: 888001 });
+const result = await zecflow.readEnvelope("receipts.get", { saleId: "4", chainId: 888001 });
 console.log(result.requestId, result.chainId, result.blockNumber, result.indexingStatus);
 console.log(result.data);
 ```

@@ -65,7 +65,7 @@ export default function ExportRecordDialog({ isTop, close }: ModalComponentProps
   const data = profile.data;
   const sample = mode === "demo";
   const name = (extension: string) =>
-    `spoke-record-${data?.handle ?? "account"}-${data?.lastIndexedBlock ?? "demo"}.${extension}`;
+    `zecflow-record-${data?.handle ?? "account"}-${data?.lastIndexedBlock ?? "demo"}.${extension}`;
   const done = () =>
     pushToast({
       id: "T-36",

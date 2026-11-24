@@ -33,10 +33,10 @@ The deployment output contains the token and protocol addresses. Only chain IDs 
 Create ten fresh keys in a private file outside the repository. The command refuses to overwrite an existing file and never prints the keys:
 
 ```sh
-mkdir -p "$HOME/.spoke"
-pnpm --filter @zecflow/contracts fixture:keys "$HOME/.spoke/fixture.env"
+mkdir -p "$HOME/.zecflow"
+pnpm --filter @zecflow/contracts fixture:keys "$HOME/.zecflow/fixture.env"
 set -a
-. "$HOME/.spoke/fixture.env"
+. "$HOME/.zecflow/fixture.env"
 set +a
 ```
 

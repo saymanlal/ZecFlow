@@ -7,7 +7,7 @@ export const DAY = 24 * HOUR;
 
 export const demoId = (kind: string, n: number | string): DemoId => `demo-${kind}-${String(n)}`;
 
-export const sampleHash = (label: string): Hex => keccak256(stringToHex(`spoke-demo:${label}`));
+export const sampleHash = (label: string): Hex => keccak256(stringToHex(`zecflow-demo:${label}`));
 
 export const sampleAddress = (label: string): Address => getAddress(sampleHash(label).slice(0, 42));
 

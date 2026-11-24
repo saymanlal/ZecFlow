@@ -16,7 +16,7 @@ export const supportRoutes = (services: Services) => {
       const body = await input(c, clientMethodSchemas[method].input);
       const authenticated = getCookie(
         c,
-        services.production ? "__Host-spoke_session" : "spoke_session",
+        services.production ? "__Host-zecflow_session" : "zecflow_session",
       );
       const owner = authenticated ? (await requireSession(c, services)).accountId : "public";
       const id = newId();

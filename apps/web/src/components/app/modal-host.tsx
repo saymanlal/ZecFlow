@@ -8,7 +8,7 @@ import type { ModalComponentProps } from "./modal-types";
 
 const anchoredModals = new Set<ModalId>(["M-07", "M-39", "M-40"]);
 const phoneQuery = "(max-width: 639px)";
-const historyMarker = "spokeModal";
+const historyMarker = "zecflowModal";
 
 function ModalSlot<K extends ModalId>({
   entry,

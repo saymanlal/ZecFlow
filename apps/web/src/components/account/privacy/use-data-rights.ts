@@ -106,7 +106,7 @@ export function useDataRights(close: () => void) {
               notifications,
               links,
             },
-            `spoke-sample-export-${profile.handle ?? "account"}.json`,
+            `zecflow-sample-export-${profile.handle ?? "account"}.json`,
           );
           toast("T-36", copy.ready);
           close();

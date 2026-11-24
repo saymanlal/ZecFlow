@@ -63,18 +63,18 @@ describe.skipIf(!databaseUrl)("privacy deletion and wallet capability revocation
       headers: {
         origin,
         "content-type": "application/json",
-        cookie: `spoke_session=${token}`,
+        cookie: `zecflow_session=${token}`,
         "x-csrf-token": csrf,
       },
       ...(body === undefined ? {} : { body: JSON.stringify(body) }),
     });
   beforeAll(async () => {
     database = await isolatedStore(
-      databaseUrl ?? "postgres://localhost:54332/spoke_test",
+      databaseUrl ?? "postgres://localhost:54332/zecflow_test",
       `privacy_${randomUUID().replaceAll("-", "")}`,
     );
     rpc = await fixtureRpc();
-    directory = await mkdtemp(join(tmpdir(), "spoke-privacy-"));
+    directory = await mkdtemp(join(tmpdir(), "zecflow-privacy-"));
     const base = createChainService(rpc.url, 31337, contract, paymentToken);
     services = {
       store: database.store,

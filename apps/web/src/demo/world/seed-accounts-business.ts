@@ -78,7 +78,7 @@ export const businessNotices = (
     sell(
       "webhook.failing",
       "Webhook endpoint failing",
-      `${site}/webhooks/spoke failed 5 deliveries in a row. Retries continue until ${when(a + 18 * HOUR)}.`,
+      `${site}/webhooks/zecflow failed 5 deliveries in a row. Retries continue until ${when(a + 18 * HOUR)}.`,
       "/sell/developers?tab=webhooks",
       a - 6 * HOUR,
       business,

@@ -21,7 +21,7 @@ export const readPasskeyEntropy = async (client?: ZecFlowClient | null, create =
   const result = create
     ? await createPasskeyWithPrfOutput({
         rp: { id: location.hostname, name: "ZecFlow" },
-        user: { name: `spoke-${crypto.randomUUID()}`, displayName: "ZecFlow account" },
+        user: { name: `zecflow-${crypto.randomUUID()}`, displayName: "ZecFlow account" },
       })
     : await getPasskeyPrfOutput({
         rpId: location.hostname,

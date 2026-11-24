@@ -36,7 +36,7 @@ const sourceOf = (campaign: DemoCampaign) =>
     ? "external_store"
     : campaign.kind === "subscription"
       ? "subscription"
-      : "spoke_checkout";
+      : "zecflow_checkout";
 
 const campaignRow = (world: DemoWorld, campaign: DemoCampaign, now: number): Row => {
   const sales = salesOf(world, campaign.id);
@@ -76,7 +76,7 @@ const draftRow = (world: DemoWorld, record: DemoDraftRecord, alert: number): Row
       BigInt(policy.perSaleCap),
     ).toString(),
     policy,
-    source: "spoke_checkout",
+    source: "zecflow_checkout",
     trustMode: "NATIVE_ONCHAIN",
     eligibility: record.draft.inviteOnly ? "invitation_only" : "open",
     availableRewards: "0",

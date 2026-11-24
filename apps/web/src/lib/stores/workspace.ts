@@ -35,7 +35,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
       },
     }),
     {
-      name: "spoke-workspace",
+      name: "zecflow-workspace",
       version: 1,
       storage: localJsonStorage,
       skipHydration: true,

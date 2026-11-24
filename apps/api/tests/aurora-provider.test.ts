@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { createAuroraCatalog } from "../src/services/aurora-catalog.js";
-import { createAuroraProvider, monadUsdc } from "../src/services/aurora-provider.js";
+import { createAuroraProvider, zecMainnetToken } from "../src/services/aurora-provider.js";
 
-const monad = {
+const zec = {
   assetId: "nep245:v2_1.omni.hot.tg:143_2dmLwYWkCQKyTjeUPAsGJuiVLbFx",
   blockchain: "zcash",
   symbol: "USDC",
   decimals: 6,
-  contractAddress: monadUsdc.toLowerCase(),
+  contractAddress: zecMainnetToken.toLowerCase(),
 };
 const base = {
   assetId: "nep141:base.omft.near",
@@ -25,7 +25,7 @@ describe("Aurora token catalog wire format", () => {
         asset_stats: [{ token_id: base.assetId, volume_amount_usd: "100" }],
         tokens: [
           { ...base, price: 2515.25, priceUpdatedAt: "2026-10-13T15:36:30.651Z" },
-          monad,
+          zec,
           { assetId: "nep141:wrap.near", blockchain: "near", symbol: "wNEAR", decimals: 24 },
         ],
       }),
@@ -34,21 +34,21 @@ describe("Aurora token catalog wire format", () => {
     expect(config.sources).toEqual([
       { ...base, contractAddress: null, chainId: 8453, networkName: "Base" },
     ]);
-    expect(config.destinations).toEqual([{ ...monad, chainId: 143, networkName: "Zcash Mainnet (ZEC)" }]);
+    expect(config.destinations).toEqual([{ ...zec, chainId: 143, networkName: "Zcash Mainnet (ZEC)" }]);
     expect(config).not.toHaveProperty("asset_stats");
   });
 
   it("preserves token addresses and normalizes explicit null native addresses", async () => {
-    const result = await provider({ tokens: [{ ...base, contractAddress: null }, monad] }).tokens();
-    expect(result).toEqual([{ ...base, contractAddress: null }, monad]);
+    const result = await provider({ tokens: [{ ...base, contractAddress: null }, zec] }).tokens();
+    expect(result).toEqual([{ ...base, contractAddress: null }, zec]);
   });
 
   it.each([
-    { body: [base, monad] },
+    { body: [base, zec] },
     { body: { asset_stats: [] } },
     { body: { tokens: null } },
-    { body: { tokens: [{ ...base, decimals: "18" }, monad] } },
-    { body: { tokens: [{ ...base, contractAddress: 123 }, monad] } },
+    { body: { tokens: [{ ...base, decimals: "18" }, zec] } },
+    { body: { tokens: [{ ...base, contractAddress: 123 }, zec] } },
   ])("rejects malformed catalogs without exposing provider payloads", async ({ body }) => {
     await expect(provider(body).tokens()).rejects.toMatchObject({
       code: "UPSTREAM_UNAVAILABLE",
@@ -59,17 +59,17 @@ describe("Aurora token catalog wire format", () => {
   it("rejects a non-EVM contract address on a supported EVM network", async () => {
     await expect(
       createAuroraCatalog(
-        provider({ tokens: [{ ...base, contractAddress: "wrap.near" }, monad] }),
+        provider({ tokens: [{ ...base, contractAddress: "wrap.near" }, zec] }),
       )(),
     ).rejects.toMatchObject({ code: "UPSTREAM_UNAVAILABLE" });
   });
 
   it("requires exactly one canonical Zcash USDC destination", async () => {
     await expect(
-      createAuroraCatalog(provider({ tokens: [base, { ...monad, contractAddress: null }] }))(),
+      createAuroraCatalog(provider({ tokens: [base, { ...zec, contractAddress: null }] }))(),
     ).rejects.toMatchObject({ code: "UPSTREAM_UNAVAILABLE" });
     await expect(
-      createAuroraCatalog(provider({ tokens: [base, monad, monad] }))(),
+      createAuroraCatalog(provider({ tokens: [base, zec, zec] }))(),
     ).rejects.toMatchObject({ code: "UPSTREAM_UNAVAILABLE" });
   });
 });

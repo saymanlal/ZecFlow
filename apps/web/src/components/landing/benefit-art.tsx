@@ -71,7 +71,7 @@ export function ShareArt() {
           <p className="text-subtle mt-1 text-[9px]">Your link joins under Chi&apos;s branch.</p>
           <div className="border-line mt-3 flex items-center gap-2 rounded-lg border px-2.5 py-2 text-[10px]">
             <HugeiconsIcon icon={Link01Icon} size={12} aria-hidden="true" />
-            <span className="font-mono">spoke.link/r/8f2k</span>
+            <span className="font-mono">zecflow.link/r/8f2k</span>
           </div>
           <div className="border-line mt-2 flex items-center gap-2 rounded-lg border px-2.5 py-2 text-[10px]">
             <HugeiconsIcon icon={QrCodeIcon} size={12} aria-hidden="true" />

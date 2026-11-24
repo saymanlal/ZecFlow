@@ -9,7 +9,7 @@ const preference = z.object({
   choice: z.enum(["allow", "ask"]),
   capMinor: z.string().regex(/^\d+$/),
 });
-const key = "spoke-quick-actions";
+const key = "zecflow-quick-actions";
 let decision: ((choice: "allow" | "ask") => void) | null = null;
 
 export const readQuickActions = () => {

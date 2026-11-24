@@ -129,7 +129,7 @@ export const seedDeveloper = (core: DemoCore) => {
   const reportingKey = scopedId(scope, "key", 1);
   const webhook: WebhookEndpoint = {
     id: scopedId(scope, "hook", 1),
-    url: "https://hooks.example.com/northbeam/spoke",
+    url: "https://hooks.example.com/northbeam/zecflow",
     events: ["sale.pending", "sale.finalized", "sale.refunded", "campaign.budget_low"],
     enabled: true,
     createdAt: iso(anchor - 24 * DAY),

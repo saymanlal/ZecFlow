@@ -120,8 +120,8 @@ describe.skipIf(!rpcUrl || !databaseUrl)(
       return client;
     };
     beforeAll(async () => {
-      if (!databaseUrl?.endsWith("/spoke_journey"))
-        throw new Error("Use the dedicated spoke_journey database");
+      if (!databaseUrl?.endsWith("/zecflow_journey"))
+        throw new Error("Use the dedicated zecflow_journey database");
       expect(await chainClient.getChainId()).toBe(31337);
       database = await isolatedStore(databaseUrl, `journey_${randomUUID().replaceAll("-", "")}`);
       const tokenReceipt = await chainClient.waitForTransactionReceipt({

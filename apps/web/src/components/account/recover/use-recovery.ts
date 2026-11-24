@@ -22,7 +22,7 @@ export type SignInResult =
   { kind: "noAccount" } | { kind: "signedIn"; me: Me; isNew: boolean; recorded: boolean };
 
 const unknownSampleAddress = getAddress(
-  `0x${keccak256(toHex("spoke sample unknown phrase")).slice(-40)}`,
+  `0x${keccak256(toHex("zecflow sample unknown phrase")).slice(-40)}`,
 );
 
 const transportsOf = (values: readonly string[] | undefined) =>
@@ -120,7 +120,7 @@ export function useRecovery(ask: (kind: "passkey") => Promise<void>) {
     const secret = mnemonicToEntropy(words.join(" "), wordlist);
     const vault = await createSecretVaultWithNewPasskey({
       rp: { id: location.hostname, name: "ZecFlow" },
-      user: { name: `spoke-${crypto.randomUUID()}`, displayName: "ZecFlow account" },
+      user: { name: `zecflow-${crypto.randomUUID()}`, displayName: "ZecFlow account" },
       secret,
     }).finally(() => {
       secret.fill(0);

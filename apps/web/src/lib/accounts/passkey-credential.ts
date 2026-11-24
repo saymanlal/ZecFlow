@@ -7,7 +7,7 @@ const credentialSchema = z.object({
     .default([]),
   kind: z.enum(["original", "added"]).optional(),
 });
-const key = "spoke-passkey";
+const key = "zecflow-passkey";
 
 export const storedPasskey = () => {
   try {

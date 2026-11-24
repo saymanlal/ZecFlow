@@ -23,8 +23,8 @@ export function TemplateDetails({
   return (
     <Card padding="lg" className="flex flex-col gap-4">
       <h2 className="font-display text-h4 text-ink font-medium tracking-[-0.01em]">{copy.title}</h2>
-      {template.source === "spoke" ? (
-        <p className="text-body text-sm">{copy.spoke}</p>
+      {template.source === "zecflow" ? (
+        <p className="text-body text-sm">{copy.zecflow}</p>
       ) : (
         <ol className="flex flex-col">
           {[...template.history].reverse().map((entry, reversedIndex) => {

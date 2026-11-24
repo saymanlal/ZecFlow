@@ -28,7 +28,7 @@ export const useModeStore = create<ModeState>()(
       },
     }),
     {
-      name: "spoke-mode",
+      name: "zecflow-mode",
       version: 1,
       storage: localJsonStorage,
       skipHydration: true,

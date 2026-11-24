@@ -7,7 +7,7 @@ export type LibraryTemplate = {
   readonly id: string;
   readonly name: string;
   readonly version: number;
-  readonly source: "spoke" | "mine";
+  readonly source: "zecflow" | "mine";
   readonly categories: readonly string[];
   readonly status: "active" | "archived";
   readonly createdAt: string | null;
@@ -89,10 +89,10 @@ const points: readonly Point[] = [
 ];
 
 export const startingPoints: readonly LibraryTemplate[] = points.map((point) => ({
-  id: `spoke-${point.slug}`,
+  id: `zecflow-${point.slug}`,
   name: point.name,
   version: 1,
-  source: "spoke",
+  source: "zecflow",
   categories: point.categories,
   status: "active",
   createdAt: null,

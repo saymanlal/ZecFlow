@@ -11,7 +11,7 @@ const shapes = ["lime", "pink", "block"] as const satisfies readonly PieceShape[
 const tiles = ["bg-lime-soft", "bg-pink-soft", "bg-lilac-soft", "bg-sky-soft"] as const;
 
 export function DefaultLogo({ slug, className }: { slug: string; className?: string }) {
-  const seed = slugSeed(slug || "spoke");
+  const seed = slugSeed(slug || "zecflow");
   const shape = shapes[seed % shapes.length] ?? "lime";
   const tile = tiles[Math.floor(seed / shapes.length) % tiles.length] ?? "bg-lime-soft";
   return (

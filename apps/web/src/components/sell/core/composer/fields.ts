@@ -59,7 +59,7 @@ export const extrasOf = (fields: ComposerFields): ComposerExtras => ({
   template: fields.template,
 });
 
-const storageKey = (scope: string, draftId: string) => `spoke-composer:${scope}:${draftId}`;
+const storageKey = (scope: string, draftId: string) => `zecflow-composer:${scope}:${draftId}`;
 
 const storage = (): Storage | null => {
   try {

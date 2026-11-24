@@ -124,7 +124,7 @@ export const useUiStore = create<UiState>()(
       },
     }),
     {
-      name: "spoke-ui",
+      name: "zecflow-ui",
       version: 1,
       storage: localJsonStorage,
       skipHydration: true,

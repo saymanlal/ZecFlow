@@ -147,7 +147,7 @@ describe("reports", () => {
     expect(before.items.filter((run) => run.url === null)).toHaveLength(1);
     const ready = await client["reports.export"](growthCoreInputs["reports.export"]);
     expect(ready).toEqual({
-      url: "https://usezecflow.xyz/demo/exports/spoke-demo-SAMPLE-DATA-sales-1.csv",
+      url: "https://usezecflow.xyz/demo/exports/zecflow-demo-SAMPLE-DATA-sales-1.csv",
     });
     const queued = await client["reports.export"]({
       kind: "vault",

@@ -17,7 +17,7 @@ const token = "0x0000000000000000000000000000000000000001";
 const hash = `0x${"ab".repeat(32)}` as const;
 const origin = "http://localhost:3140";
 describe.skipIf(!databaseUrl)("direct-chain delivery and upload isolation", () => {
-  const store = connectStore(databaseUrl ?? "postgres://localhost:54332/spoke_test");
+  const store = connectStore(databaseUrl ?? "postgres://localhost:54332/zecflow_test");
   const chain = createChainService("http://127.0.0.1:1", 31337, null, null);
   const services = {
     store,
@@ -65,7 +65,7 @@ describe.skipIf(!databaseUrl)("direct-chain delivery and upload isolation", () =
   };
   beforeAll(async () => {
     await store.migrate();
-    services.storageDirectory = await mkdtemp(join(tmpdir(), "spoke-delivery-"));
+    services.storageDirectory = await mkdtemp(join(tmpdir(), "zecflow-delivery-"));
     vi.spyOn(chain, "sale").mockImplementation(() =>
       Promise.resolve([
         {

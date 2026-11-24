@@ -3,7 +3,7 @@ import { z } from "zod";
 import { encodeAbiParameters, encodeEventTopics, erc20Abi, parseAbiParameters } from "viem";
 import { auroraDeposit } from "@zecflow/protocol";
 import { createAuroraConfirmation } from "../src/services/aurora-confirmation.js";
-import { monadUsdc } from "../src/services/aurora-provider.js";
+import { zecMainnetToken } from "../src/services/aurora-provider.js";
 import {
   fundingRecipient,
   fundingOther,
@@ -33,7 +33,7 @@ const value = auroraDeposit.parse({
     networkName: "Zcash Mainnet (ZEC)",
     symbol: "USDC",
     decimals: 6,
-    contractAddress: monadUsdc,
+    contractAddress: zecMainnetToken,
   },
   recipient: fundingRecipient,
   refundAddress: fundingRecipient,
@@ -91,7 +91,7 @@ const verify = (
         blockNumber: "0x63",
         blockHash,
         from: depositAddress,
-        to: monadUsdc,
+        to: zecMainnetToken,
         cumulativeGasUsed: "0x100",
         gasUsed: "0x100",
         effectiveGasPrice: "0x1",
@@ -101,7 +101,7 @@ const verify = (
         logsBloom: `0x${"00".repeat(256)}`,
         logs: [
           {
-            address: options.token ?? monadUsdc,
+            address: options.token ?? zecMainnetToken,
             blockNumber: "0x63",
             blockHash,
             transactionHash: fundingHash,

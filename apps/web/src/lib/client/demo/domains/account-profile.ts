@@ -14,7 +14,7 @@ export const HANDLE_LOCK_MS = 30 * DAY;
 
 export const RESERVED_HANDLES: ReadonlySet<string> = new Set([
   "admin",
-  "spoke",
+  "zecflow",
   "support",
   "help",
   "root",

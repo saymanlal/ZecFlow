@@ -1,4 +1,4 @@
-export function BrandMark({ height, priority: _priority = false }: { height: number; priority?: boolean }) {
+export function BrandMark({ height }: { height: number; priority?: boolean }) {
   return (
     <svg
       width={height}

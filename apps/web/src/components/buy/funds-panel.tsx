@@ -49,7 +49,7 @@ export function FundsPanel() {
               </Button>
             ) : demo ? null : (
               <Button variant="secondary" asChild>
-                <a href="https://faucet.monad.xyz" target="_blank" rel="noreferrer">
+                <a href="https://faucet.zec.rocks" target="_blank" rel="noreferrer">
                   Zcash MON faucet
                 </a>
               </Button>

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { addressString, isoTimestamp, uintString } from "@zecflow/protocol";
 import { ApiProblem } from "../http/problem.js";
 
-export const monadUsdc = "0x754704Bc059F8C67012fEd69BC8A327a5aafb603";
+export const zecMainnetToken = "0x754704Bc059F8C67012fEd69BC8A327a5aafb603";
 export const auroraNetworks = {
   eth: { chainId: 1, networkName: "Ethereum" },
   base: { chainId: 8453, networkName: "Base" },
@@ -11,7 +11,7 @@ export const auroraNetworks = {
   pol: { chainId: 137, networkName: "Polygon" },
   avax: { chainId: 43114, networkName: "Avalanche" },
   bsc: { chainId: 56, networkName: "BNB Chain" },
-  monad: { chainId: 143, networkName: "Zcash Mainnet (ZEC)" },
+  zec: { chainId: 143, networkName: "Zcash Mainnet (ZEC)" },
 } as const;
 
 const token = z.object({

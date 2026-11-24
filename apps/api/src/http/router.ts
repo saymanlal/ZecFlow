@@ -17,7 +17,7 @@ export const router = () => new Hono<{ Variables: Variables }>();
 export type Router = ReturnType<typeof router>;
 
 export const requireSession = async (c: ApiContext, services: Services) => {
-  const raw = getCookie(c, services.production ? "__Host-spoke_session" : "spoke_session");
+  const raw = getCookie(c, services.production ? "__Host-zecflow_session" : "zecflow_session");
   if (!raw) throw new ApiProblem(401, "UNAUTHENTICATED", "Sign in to continue.");
   const [session] = await services.store.db
     .select()

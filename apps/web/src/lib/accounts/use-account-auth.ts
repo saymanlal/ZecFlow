@@ -34,7 +34,7 @@ export const normalizeWeb3Error = (failure: unknown, fallback: string): string =
     return "A wallet prompt is already open. Check your wallet extension to continue.";
   }
   if (lower.includes("chain") && (lower.includes("unrecognized") || lower.includes("4902"))) {
-    return `Please add or switch to ${activeChain.name} (Chain ID ${activeChain.id}) in your wallet.`;
+    return `Please add or switch to ${activeChain.name} (Chain ID ${String(activeChain.id)}) in your wallet.`;
   }
   if (lower.includes("disconnected")) {
     return "Your wallet disconnected during sign-in. Reconnect and try again.";
@@ -88,8 +88,9 @@ export const useAccountAuth = ({
       throw new Error(
         normalizeWeb3Error(
           switchErr,
-          `Switch your wallet network to ${activeChain.name} (${activeChain.id}) to continue.`,
+          `Switch your wallet network to ${activeChain.name} (${String(activeChain.id)}) to continue.`,
         ),
+        { cause: switchErr },
       );
     }
   };
@@ -136,7 +137,7 @@ export const useAccountAuth = ({
     try {
       const existing = getConnection(config);
       const connected = connector
-        ? existing.status === "connected" && existing.connector?.id === connector.id
+        ? existing.status === "connected" && existing.connector.id === connector.id
           ? existing
           : await connect(config, { connector })
         : existing;

@@ -6,7 +6,7 @@ export const studioPageCopy = {
   useInCampaign: "Use in a new campaign",
   library: {
     label: "Template library",
-    spoke: "ZecFlow starting points",
+    zecflow: "ZecFlow starting points",
     mine: "My templates",
     note: "Starting points written by ZecFlow. They are not benchmarks or results from other merchants.",
     all: "All",
@@ -39,7 +39,7 @@ export const studioPageCopy = {
     first: "First version",
     noChange: "Same terms as the version before",
     note: "Changing a template never changes campaigns that used it. A campaign’s terms change only when its merchant publishes new terms for future sales.",
-    spoke: "Written by ZecFlow for this kind of product. It has one version.",
+    zecflow: "Written by ZecFlow for this kind of product. It has one version.",
   },
   save: {
     title: "Save as template",

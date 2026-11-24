@@ -63,7 +63,7 @@ Passkey signing currently supports testnet, so new mainnet instructions require 
 ## Verify
 
 ```sh
-TEST_DATABASE_URL=postgres://localhost:54332/spoke_test pnpm test --project api
+TEST_DATABASE_URL=postgres://localhost:54332/zecflow_test pnpm test --project api
 ```
 
 Use a disposable database. The suite tests sessions, ownership, privacy, idempotency, replay, reorganization, concurrent workers, credit budgets and direct-chain delivery. Gas tests additionally need a dedicated Anvil process on chain 888001 and `TEST_GAS_RPC_URL`.

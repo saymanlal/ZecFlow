@@ -2,7 +2,7 @@ import { encryptedNote, normalizeScope, type EncryptedNote, type NoteScope } fro
 
 export const noteStorageKey = (scope: NoteScope) => {
   const { address, chainId, campaignId } = normalizeScope(scope);
-  return `spoke-campaign-notes:v1:${address}:${String(chainId)}:${campaignId}`;
+  return `zecflow-campaign-notes:v1:${address}:${String(chainId)}:${campaignId}`;
 };
 
 export const readNote = (scope: NoteScope) => {

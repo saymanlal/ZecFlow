@@ -66,9 +66,9 @@ const startingPoints: readonly (TemplateTerms & { slug: string; name: string })[
   },
 ];
 
-const spokeTemplates = (world: DemoWorld): PolicyTemplate[] =>
+const zecflowTemplates = (world: DemoWorld): PolicyTemplate[] =>
   startingPoints.map((terms) => ({
-    id: `spoke-${terms.slug}`,
+    id: `zecflow-${terms.slug}`,
     name: terms.name,
     policy: templatePolicy(world.tokens.sdusd.address, terms),
     status: "active",
@@ -90,7 +90,7 @@ export const studioReads = {
       .filter((template) => template.merchantId === merchant.id)
       .sort((a, b) => a.name.localeCompare(b.name) || a.createdAt.localeCompare(b.createdAt))
       .map(wire);
-    return [...spokeTemplates(runtime.world), ...mine];
+    return [...zecflowTemplates(runtime.world), ...mine];
   },
   "studio.simulate": (input) => {
     const reward = computeReward(

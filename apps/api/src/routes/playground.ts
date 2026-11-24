@@ -15,7 +15,7 @@ export const playgroundRoutes = (
     const { path } = await input(c, clientMethodSchemas["playground.run"].input.strict());
     if (!path.startsWith("/v1/") || /[\\#\s]|%2f|%5c|%2e/i.test(path))
       throw new ApiProblem(400, "VALIDATION_FAILED", "Choose a public API GET path.");
-    const base = "http://spoke.internal";
+    const base = "http://zecflow.internal";
     const url = new URL(path, base);
     if (
       url.origin !== base ||

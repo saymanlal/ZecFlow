@@ -42,7 +42,7 @@ export function usePasskeyActions() {
       try {
         const vault = await createSecretVaultWithNewPasskey({
           rp: { id: location.hostname, name: "ZecFlow" },
-          user: { name: `spoke-${crypto.randomUUID()}`, displayName: "ZecFlow account" },
+          user: { name: `zecflow-${crypto.randomUUID()}`, displayName: "ZecFlow account" },
           secret,
         });
         const kept = knownTransports(vault.credential.transports);

@@ -33,7 +33,7 @@ export function useWorldCounts() {
   };
 }
 
-const probeKey = "spoke-storage-probe";
+const probeKey = "zecflow-storage-probe";
 let storageWorks: boolean | null = null;
 
 const probeStorage = () => {
