@@ -83,7 +83,10 @@ export const useAccountAuth = ({
   const ensureActiveChain = async (chainId: number | undefined, connector?: Connector) => {
     if (chainId === activeChain.id) return;
     try {
-      await switchChain(config, connector ? { chainId: activeChain.id, connector } : { chainId: activeChain.id });
+      await switchChain(
+        config,
+        connector ? { chainId: activeChain.id, connector } : { chainId: activeChain.id },
+      );
     } catch (switchErr) {
       throw new Error(
         normalizeWeb3Error(

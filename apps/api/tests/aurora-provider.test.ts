@@ -34,7 +34,9 @@ describe("Aurora token catalog wire format", () => {
     expect(config.sources).toEqual([
       { ...base, contractAddress: null, chainId: 8453, networkName: "Base" },
     ]);
-    expect(config.destinations).toEqual([{ ...zec, chainId: 143, networkName: "Zcash Mainnet (ZEC)" }]);
+    expect(config.destinations).toEqual([
+      { ...zec, chainId: 143, networkName: "Zcash Mainnet (ZEC)" },
+    ]);
     expect(config).not.toHaveProperty("asset_stats");
   });
 
@@ -58,9 +60,7 @@ describe("Aurora token catalog wire format", () => {
 
   it("rejects a non-EVM contract address on a supported EVM network", async () => {
     await expect(
-      createAuroraCatalog(
-        provider({ tokens: [{ ...base, contractAddress: "wrap.near" }, zec] }),
-      )(),
+      createAuroraCatalog(provider({ tokens: [{ ...base, contractAddress: "wrap.near" }, zec] }))(),
     ).rejects.toMatchObject({ code: "UPSTREAM_UNAVAILABLE" });
   });
 

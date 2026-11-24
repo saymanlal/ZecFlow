@@ -99,7 +99,8 @@ const lookFor = (step: TxStep): Look => {
   }
 };
 
-const explorer = activeChain.blockExplorers?.default.url ?? "https://testnet.zcashblockexplorer.com";
+const explorer =
+  activeChain.blockExplorers?.default.url ?? "https://testnet.zcashblockexplorer.com";
 
 export function StepList({ steps, live }: { steps: readonly TxStep[]; live: boolean }) {
   return (

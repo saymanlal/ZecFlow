@@ -339,7 +339,7 @@ describe("demo accounts", () => {
     const job = await client["account.exportData"]({ confirmationToken: token });
     expect(job).toMatchObject({
       status: "ready",
-      url: `https://usezecflow.xyz/demo/exports/${job.jobId}.json`,
+      url: `https://zecflowlive.vercel.app/demo/exports/${job.jobId}.json`,
     });
   });
 

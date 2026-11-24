@@ -60,14 +60,14 @@ export const visibilityCopy = {
     icon: IncognitoIcon,
     tone: "ink",
     explainer:
-      "Your handle and chosen stats are public at usezecflow.xyz/u/{handle}, without your name, bio, website, addresses or receipt links. Listed under your handle; search engines don’t index it.",
+      "Your handle and chosen stats are public at zecflowlive.vercel.app/u/{handle}, without your name, bio, website, addresses or receipt links. Listed under your handle; search engines don’t index it.",
   },
   public: {
     label: "Public",
     icon: ViewIcon,
     tone: "ink",
     explainer:
-      "Anyone can see your name, handle, chosen stats and receipt links at usezecflow.xyz/u/{handle}. Listed in the distributor directory and discoverable by merchants.",
+      "Anyone can see your name, handle, chosen stats and receipt links at zecflowlive.vercel.app/u/{handle}. Listed in the distributor directory and discoverable by merchants.",
   },
 } as const satisfies Record<
   "private" | "pseudonymous" | "public",

@@ -22,7 +22,8 @@ export const sharedFormCopy = {
     reserved: "That handle is reserved.",
     invalid: "Use 3–20 lowercase letters, numbers or underscores, starting with a letter.",
     race: "Someone just took @{handle}. Try one of these:",
-    unavailable: "We couldn't check this handle right now. You can still save; ZecFlow checks again.",
+    unavailable:
+      "We couldn't check this handle right now. You can still save; ZecFlow checks again.",
     required: "You need a handle to share links.",
     yours: "This is your handle.",
   },

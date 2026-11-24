@@ -27,7 +27,10 @@ export const isZcashViewingKey = (value: string): boolean => VIEWING_KEY_RE.test
 export const zcashAddressSchema = z
   .string()
   .trim()
-  .refine(isZcashAddress, "Enter a valid Zcash Unified (u1/utest1), Sapling (zs1), or Transparent (t1/tm) address.");
+  .refine(
+    isZcashAddress,
+    "Enter a valid Zcash Unified (u1/utest1), Sapling (zs1), or Transparent (t1/tm) address.",
+  );
 
 export const zcashViewingKeySchema = z
   .string()
@@ -42,7 +45,8 @@ export const encodeBase64Url = (input: string): string => {
 };
 
 export const decodeBase64Url = (encoded: string): string => {
-  const padded = encoded.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((encoded.length + 3) % 4);
+  const padded =
+    encoded.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((encoded.length + 3) % 4);
   const binary = atob(padded);
   const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
   return new TextDecoder().decode(bytes);

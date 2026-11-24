@@ -99,7 +99,11 @@ export const validateRpc = (request: z.infer<typeof rpcInput>, services: Service
         candidate.to.toLowerCase(),
       )
     )
-      throw new ApiProblem(403, "NOT_AUTHORIZED", "Contract calls are limited to ZecFlow contracts.");
+      throw new ApiProblem(
+        403,
+        "NOT_AUTHORIZED",
+        "Contract calls are limited to ZecFlow contracts.",
+      );
   }
   if (request.method === "eth_sendRawTransaction") {
     const [raw] = params.eth_sendRawTransaction.parse(request.params);

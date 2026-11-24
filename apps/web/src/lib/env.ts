@@ -24,9 +24,28 @@ const publicEnvSchema = z.object({
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
 
-export const parsePublicEnv = (source: Record<string, string | undefined>): PublicEnv =>
-  publicEnvSchema.parse({
+const TESTNET_DEPLOYMENTS = {
+  protocol: "0x1Fa5e94e44DB2101664C0a24dBf1e52912af3eca",
+  token: "0xb6279237003eD710bB4ccE6fbd126e07eD4D8E23",
+} as const;
+
+export const parsePublicEnv = (source: Record<string, string | undefined>): PublicEnv => {
+  const chainId = publicEnvSchema.shape.NEXT_PUBLIC_CHAIN_ID.parse(
+    source.NEXT_PUBLIC_CHAIN_ID || undefined,
+  );
+  const protocolDefault = chainId === 888001 ? TESTNET_DEPLOYMENTS.protocol : undefined;
+  const tokenDefault = chainId === 888001 ? TESTNET_DEPLOYMENTS.token : undefined;
+  return publicEnvSchema.parse({
     ...source,
-    NEXT_PUBLIC_CHAIN_ID: source.NEXT_PUBLIC_CHAIN_ID || undefined,
+    NEXT_PUBLIC_CHAIN_ID: chainId,
     NEXT_PUBLIC_API_URL: source.NEXT_PUBLIC_API_URL || undefined,
+    NEXT_PUBLIC_PROTOCOL_ADDRESS:
+      source.NEXT_PUBLIC_PROTOCOL_ADDRESS === undefined
+        ? protocolDefault
+        : source.NEXT_PUBLIC_PROTOCOL_ADDRESS,
+    NEXT_PUBLIC_DEMO_TOKEN_ADDRESS:
+      source.NEXT_PUBLIC_DEMO_TOKEN_ADDRESS === undefined
+        ? tokenDefault
+        : source.NEXT_PUBLIC_DEMO_TOKEN_ADDRESS,
   });
+};

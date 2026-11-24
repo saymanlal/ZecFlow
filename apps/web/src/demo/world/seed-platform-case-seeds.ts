@@ -155,7 +155,8 @@ export const caseSeeds = (core: DemoCore): CaseSeed[] => {
           action: "freezeNewActivity",
           at: at.frozen,
           note: "Freezing new orders and links for 72 hours while the merchant explains the refunds.",
-          publicNote: "New orders are paused on ZecFlow for 72 hours while we review recent refunds.",
+          publicNote:
+            "New orders are paused on ZecFlow for 72 hours while we review recent refunds.",
         },
         {
           action: "askMerchantToPause",

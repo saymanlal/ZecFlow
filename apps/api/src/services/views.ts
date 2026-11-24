@@ -119,7 +119,7 @@ export const campaignCard = async (store: Store, row: StoredRecord) => {
     onchainUrl:
       row.payload.chainId === 888001
         ? `https://testnet.zcashblockexplorer.com/address/${z.string().parse(row.payload.contractAddress)}`
-        : `https://usezecflow.xyz/campaigns/${row.id}`,
+        : `https://zecflowlive.vercel.app/campaigns/${row.id}`,
     rankReasons: [],
   });
 };

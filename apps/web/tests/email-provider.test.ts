@@ -13,7 +13,12 @@ const createProvider = () => {
     onTimeout,
     getCaipNetworks: () => [],
     getActiveCaipNetwork: () => undefined,
-    metadata: { name: "ZecFlow", description: "Test", url: "https://usezecflow.xyz", icons: [] },
+    metadata: {
+      name: "ZecFlow",
+      description: "Test",
+      url: "https://zecflowlive.vercel.app",
+      icons: [],
+    },
     sdkVersion: "react-wagmi-2.0.0",
     sdkType: "appkit",
   });

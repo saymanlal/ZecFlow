@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { qrGeometry } from "@/components/ui/qr-geometry";
 
 describe("qrGeometry", () => {
-  const geometry = qrGeometry("https://usezecflow.xyz/r/abc123");
+  const geometry = qrGeometry("https://zecflowlive.vercel.app/r/abc123");
 
   it("adds a four-module quiet zone around the symbol", () => {
     expect(geometry.viewBox).toBe(`0 0 ${String(geometry.size + 8)} ${String(geometry.size + 8)}`);
@@ -17,10 +17,10 @@ describe("qrGeometry", () => {
   });
 
   it("encodes the same text to the same path", () => {
-    expect(qrGeometry("https://usezecflow.xyz/r/abc123").path).toBe(geometry.path);
+    expect(qrGeometry("https://zecflowlive.vercel.app/r/abc123").path).toBe(geometry.path);
   });
 
   it("encodes different text to a different path", () => {
-    expect(qrGeometry("https://usezecflow.xyz/r/xyz789").path).not.toBe(geometry.path);
+    expect(qrGeometry("https://zecflowlive.vercel.app/r/xyz789").path).not.toBe(geometry.path);
   });
 });

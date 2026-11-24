@@ -59,7 +59,7 @@ pnpm --filter @zecflow/web build
 - **Branching:** Branch from `main` using descriptive names such as `feat/zip321-memo-verifier`, `fix/wallet-chain-switch`, or `docs/zcash-integration`.
 - **Commit Messages:** Use [Conventional Commits](https://www.conventionalcommits.org/) (e.g., `feat(protocol): ...`, `fix(web): ...`, `docs: ...`, `test(contracts): ...`).
 - **Pull Requests:**
-  - Describe *what* changed and *why*.
+  - Describe _what_ changed and _why_.
   - Link any related GitHub issue.
   - Include test results or screenshots for UI changes.
 

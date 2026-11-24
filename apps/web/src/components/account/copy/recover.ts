@@ -9,7 +9,7 @@ export const recoverCopy = {
     wallet: "Signed in with a wallet before? Your wallet handles recovery.",
     walletAction: "Connect it instead",
     cancelled: "The passkey prompt closed before it finished. Nothing changed.",
-    prf: "That passkey can't hold a ZecFlow account. Try again with the usezecflow.xyz passkey you made, or use your recovery phrase.",
+    prf: "That passkey can't hold a ZecFlow account. Try again with the zecflowlive.vercel.app passkey you made, or use your recovery phrase.",
   },
   phrase: {
     title: "Enter your 24 words",
@@ -34,7 +34,7 @@ export const recoverCopy = {
     body: "This is the address your words open. Check it against the one you know.",
     memberSince: "Member since {date}",
     explorer: "Open this address on the explorer",
-    dev: "Development account · same address on usezecflow.xyz",
+    dev: "Development account · same address on zecflowlive.vercel.app",
     yes: "Yes, sign in",
     no: "No, check my words",
     signing: "Signing in…",
@@ -61,7 +61,7 @@ export const recoverCopy = {
     unsupported:
       "This browser can't create ZecFlow passkeys. You're signed in on this tab with your phrase. Use a supported browser to add a passkey.",
     vaultFailed:
-      "Your passkey was created but ZecFlow couldn't save its encrypted copy, so it can't sign in yet. Try again, or remove the unused usezecflow.xyz passkey from your password manager.",
+      "Your passkey was created but ZecFlow couldn't save its encrypted copy, so it can't sign in yet. Try again, or remove the unused zecflowlive.vercel.app passkey from your password manager.",
     label: "Recovered on this device",
     supported: "See supported browsers",
   },

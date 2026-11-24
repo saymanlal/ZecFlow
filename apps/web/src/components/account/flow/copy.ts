@@ -5,6 +5,7 @@ export const flowCopy = {
   now: "current step",
   back: "Back",
   devAccount: "Development account",
-  devAccountTip: "This passkey works only on localhost. It's a separate account from usezecflow.xyz.",
+  devAccountTip:
+    "This passkey works only on localhost. It's a separate account from zecflowlive.vercel.app.",
   sampleBadge: "Sample",
 } as const;

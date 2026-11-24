@@ -13,7 +13,8 @@ export const eventTx = (chainId: number, event: ChainEvent) =>
     hash: event.txHash,
     blockNumber: event.blockNumber,
     at: event.at.toISOString(),
-    explorerUrl: chainId === 888001 ? `https://testnet.zcashblockexplorer.com/tx/${event.txHash}` : null,
+    explorerUrl:
+      chainId === 888001 ? `https://testnet.zcashblockexplorer.com/tx/${event.txHash}` : null,
   });
 
 export const actorView = async (store: Store, address: string, includePrivate = false) => {

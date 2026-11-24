@@ -184,7 +184,10 @@ export const merchantsWrites = {
   },
   "merchants.uploadLogo": async (input) => {
     const hash = sha256(new Uint8Array(await input.file.arrayBuffer())).slice(2);
-    return { url: `https://usezecflow.xyz/demo/files/logo-${hash.slice(0, 16)}`, sha256: hash };
+    return {
+      url: `https://zecflowlive.vercel.app/demo/files/logo-${hash.slice(0, 16)}`,
+      sha256: hash,
+    };
   },
   "merchants.requestVerification": (input, runtime) => {
     const merchant = requireMerchant(runtime.world, runtime.personaId());

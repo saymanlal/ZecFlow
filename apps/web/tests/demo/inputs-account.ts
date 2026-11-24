@@ -17,7 +17,7 @@ export const accountInputs = {
     action: "Export your data",
   },
   "auth.verify": {
-    message: "usezecflow.xyz wants you to sign in with your account:\nPurpose: signIn",
+    message: "zecflowlive.vercel.app wants you to sign in with your account:\nPurpose: signIn",
     signature,
     method: "passkey",
   },

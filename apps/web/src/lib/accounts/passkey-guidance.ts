@@ -2,7 +2,7 @@ import { isMeraError } from "@category-labs/mera";
 
 export const passkeyAvailability = () => {
   if (!globalThis.isSecureContext)
-    return "Use a secure browser tab at usezecflow.xyz to continue with a passkey.";
+    return "Use a secure browser tab at zecflowlive.vercel.app to continue with a passkey.";
   if (
     typeof PublicKeyCredential === "undefined" ||
     typeof navigator.credentials === "undefined" ||
@@ -19,7 +19,7 @@ export const passkeyFailure = (failure: unknown) => {
     if (failure.code === "PASSKEY_OPERATION_FAILED")
       return "The passkey prompt was closed, timed out or could not run here. Try again in your browser. To restore an existing account, choose its original passkey rather than creating a new one.";
     if (failure.code === "CRYPTO_UNAVAILABLE")
-      return "Open https://usezecflow.xyz in a current browser with a secure connection, then try again.";
+      return "Open https://zecflowlive.vercel.app in a current browser with a secure connection, then try again.";
     if (failure.code === "DECRYPT_FAILED")
       return "This passkey could not unlock the saved account. Choose the original passkey or use account recovery.";
   }

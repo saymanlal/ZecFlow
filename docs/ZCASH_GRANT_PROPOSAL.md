@@ -38,9 +38,9 @@ Generic EVM testnets (such as Ethereum Sepolia) expose every buyer address, purc
 
 ## Proposed ZCG Grant Milestones
 
-| Milestone | Deliverable | Verification |
-| --- | --- | --- |
-| **M1: Core Protocol & ZIP-321 SDK** | `ZecFlowProtocol`, `@zecflow/protocol` ZIP-321/UA primitives, `@zecflow/sdk`, and full test suite | All Foundry invariants & Vitest unit suites passing (Completed) |
-| **M2: `lightwalletd` & Viewing Key Verifier** | Rust/WASM or gRPC `lightwalletd` backend worker verifying Orchard memo commitments via merchant Unified Viewing Keys | Automated integration tests against Zcash Testnet (`TAZ`) |
-| **M3: Zashi / Ywallet Checkout Flow** | End-to-end merchant checkout accepting native shielded ZEC/TAZ via ZIP-321 QR + automatic escrow release | Live Zcash Testnet demonstration & security review |
-| **M4: ZSA Bridge & Mainnet Readiness** | Zcash Shielded Asset (ZSA) issuance/settlement adapter and public documentation | Open-source audit report & mainnet deployment guide |
+| Milestone                                     | Deliverable                                                                                                          | Verification                                                    |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **M1: Core Protocol & ZIP-321 SDK**           | `ZecFlowProtocol`, `@zecflow/protocol` ZIP-321/UA primitives, `@zecflow/sdk`, and full test suite                    | All Foundry invariants & Vitest unit suites passing (Completed) |
+| **M2: `lightwalletd` & Viewing Key Verifier** | Rust/WASM or gRPC `lightwalletd` backend worker verifying Orchard memo commitments via merchant Unified Viewing Keys | Automated integration tests against Zcash Testnet (`TAZ`)       |
+| **M3: Zashi / Ywallet Checkout Flow**         | End-to-end merchant checkout accepting native shielded ZEC/TAZ via ZIP-321 QR + automatic escrow release             | Live Zcash Testnet demonstration & security review              |
+| **M4: ZSA Bridge & Mainnet Readiness**        | Zcash Shielded Asset (ZSA) issuance/settlement adapter and public documentation                                      | Open-source audit report & mainnet deployment guide             |

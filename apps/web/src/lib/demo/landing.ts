@@ -12,8 +12,8 @@ const demoOnlyPrefixes = [routes.demo];
 export const internalPath = (next: string | null | undefined): string | null => {
   if (!next) return null;
   if (!next.startsWith("/") || next.startsWith("//") || next.includes("\\")) return null;
-  const url = new URL(next, "https://usezecflow.xyz");
-  if (url.origin !== "https://usezecflow.xyz") return null;
+  const url = new URL(next, "https://zecflowlive.vercel.app");
+  if (url.origin !== "https://zecflowlive.vercel.app") return null;
   return `${url.pathname}${url.search}${url.hash}`;
 };
 

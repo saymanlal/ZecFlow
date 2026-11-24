@@ -95,7 +95,9 @@ describe.skipIf(!url)("encrypted workspace boundary and concurrency", () => {
       .update(sessions)
       .set({ hash: digest("new-session") })
       .where(sql`address=${address}`);
-    const restored = await app.request(path, { headers: { cookie: "zecflow_session=new-session" } });
+    const restored = await app.request(path, {
+      headers: { cookie: "zecflow_session=new-session" },
+    });
     expect(await restored.json()).toMatchObject({ data: { note } });
     const records = await database.store.list("encrypted-workspace", address);
     expect(Object.keys(records.items[0]?.payload ?? {}).sort()).toEqual(Object.keys(note).sort());
@@ -148,8 +150,14 @@ describe.skipIf(!url)("encrypted workspace boundary and concurrency", () => {
       .where(sql`address=${address}`);
     const note = { ...envelope(), campaignId: "99" };
     expect(
-      (await request("PUT", { note, expectedRevision: null }, address, "/v1/me/workspace/888001/99"))
-        .status,
+      (
+        await request(
+          "PUT",
+          { note, expectedRevision: null },
+          address,
+          "/v1/me/workspace/888001/99",
+        )
+      ).status,
     ).toBe(404);
   });
   it("accepts exact retries, rejects changed revisions and detects competing device saves", async () => {

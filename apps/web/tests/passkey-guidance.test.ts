@@ -24,12 +24,14 @@ describe("passkey onboarding guidance", () => {
     expect(passkeyFailure(new MeraError("PASSKEY_OPERATION_FAILED", "closed"))).toContain("closed");
     const next = "/c/3/network?node=7&sale=6";
     expect(
-      new URL(authHref("signup", { next }), "https://usezecflow.xyz").searchParams.get("next"),
+      new URL(authHref("signup", { next }), "https://zecflowlive.vercel.app").searchParams.get(
+        "next",
+      ),
     ).toBe(next);
     expect(
       new URL(
         afterAuthPath({ isNewAccount: true, next, intent: "earn" }),
-        "https://usezecflow.xyz",
+        "https://zecflowlive.vercel.app",
       ).searchParams.get("next"),
     ).toBe(next);
     expect(afterAuthPath({ isNewAccount: false, next, intent: "earn" })).toBe(next);

@@ -28,7 +28,7 @@ import { addBucket, bucketsWire, countsOf, emptyBuckets } from "../views/settlem
 
 type LinkRow = ClientOutput<"links.mine">["items"][number];
 
-export const linkUrl = (code: string) => `https://usezecflow.xyz/r/${code}`;
+export const linkUrl = (code: string) => `https://zecflowlive.vercel.app/r/${code}`;
 
 const earnedOn = (world: DemoWorld, node: DemoNode, now: number) => {
   const buckets = emptyBuckets();

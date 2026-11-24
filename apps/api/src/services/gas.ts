@@ -71,7 +71,11 @@ export const requestGas = async (
   services.store.exclusive("gas-station", async () => {
     const wallet = station(services);
     if ((await services.chain.client.getChainId()) !== 888001)
-      throw new ApiProblem(503, "WRONG_NETWORK", "The gas station only serves Zcash Testnet (TAZ).");
+      throw new ApiProblem(
+        503,
+        "WRONG_NETWORK",
+        "The gas station only serves Zcash Testnet (TAZ).",
+      );
     const status = await gasStatus(services, owner, address);
     const previous = await refreshDrip(services, owner);
     if (status.gas.state === "sending" && previous) {

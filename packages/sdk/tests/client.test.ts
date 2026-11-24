@@ -55,9 +55,9 @@ describe("public read client", () => {
           ),
         ),
     });
-    await expect(client.read("system.contracts", {})).rejects.toMatchObject<Partial<ZecFlowApiError>>(
-      { code: "INDEXER_LAGGING", requestId: "req_real", retryable: true, status: 503 },
-    );
+    await expect(client.read("system.contracts", {})).rejects.toMatchObject<
+      Partial<ZecFlowApiError>
+    >({ code: "INDEXER_LAGGING", requestId: "req_real", retryable: true, status: 503 });
   });
   it("rejects malformed live success instead of returning an untyped object", async () => {
     const client = createZecFlowClient({

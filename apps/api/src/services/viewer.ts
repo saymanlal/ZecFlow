@@ -4,7 +4,8 @@ import { ApiProblem } from "../http/problem.js";
 import type { ApiContext, Services } from "../types.js";
 
 export const viewerSession = async (c: ApiContext, services: Services) => {
-  if (!getCookie(c, services.production ? "__Host-zecflow_session" : "zecflow_session")) return null;
+  if (!getCookie(c, services.production ? "__Host-zecflow_session" : "zecflow_session"))
+    return null;
   try {
     return await requireSession(c, services);
   } catch (error) {

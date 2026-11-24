@@ -12,9 +12,12 @@ export const emailLoginAvailable = Boolean(publicEnv.NEXT_PUBLIC_REOWN_PROJECT_I
 export const initializeWalletConnection = async () => {
   const projectId = publicEnv.NEXT_PUBLIC_REOWN_PROJECT_ID;
   if (!projectId || !reownAdapter) {
-    throw new Error("WalletConnect is not configured. Use an installed browser wallet or Zcash passkey.");
+    throw new Error(
+      "WalletConnect is not configured. Use an installed browser wallet or Zcash passkey.",
+    );
   }
-  const origin = typeof location !== "undefined" ? location.origin : "https://usezecflow.xyz";
+  const origin =
+    typeof location !== "undefined" ? location.origin : "https://zecflowlive.vercel.app";
   appkit ??= createAppKit({
     adapters: [reownAdapter as NonNullable<Parameters<typeof createAppKit>[0]["adapters"]>[number]],
     projectId,

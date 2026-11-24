@@ -22,7 +22,7 @@ export const merchantOrgWire = (
   agreement: {
     version: AGREEMENT_VERSION,
     publishedAt: iso(world.anchor - 365 * 86_400_000),
-    url: "https://usezecflow.xyz/legal/merchant-agreement",
+    url: "https://zecflowlive.vercel.app/legal/merchant-agreement",
     acceptedAt: iso(merchant.joinedAt),
   },
   businessWallet: merchant.address,

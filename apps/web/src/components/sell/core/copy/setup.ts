@@ -15,7 +15,7 @@ export const setupCopy = {
     name: "Business name",
     nameHint: "Change it if your business has another name.",
     slug: "Public address",
-    slugPrefix: "usezecflow.xyz/m/",
+    slugPrefix: "zecflowlive.vercel.app/m/",
     slugAvailable: "That address is free.",
     slugChecking: "Checking…",
     useSuggestion: "Use {suggestion}",

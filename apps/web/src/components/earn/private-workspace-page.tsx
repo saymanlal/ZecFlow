@@ -68,7 +68,9 @@ export function PrivateWorkspacePage() {
                     <div>
                       <p className="font-medium">Campaign #{item.campaignId}</p>
                       <p className="text-subtle text-xs">
-                        {item.chainId === 888001 ? "Zcash Testnet (TAZ)" : `Chain ${String(item.chainId)}`}{" "}
+                        {item.chainId === 888001
+                          ? "Zcash Testnet (TAZ)"
+                          : `Chain ${String(item.chainId)}`}{" "}
                         · synced {formatDateTime(new Date(item.updatedAt))}
                       </p>
                     </div>

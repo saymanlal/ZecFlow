@@ -61,7 +61,7 @@ export const recoveryCopy = {
     differentAccount:
       "That passkey belongs to a different account ({address}). Use the passkey for {signedIn}.",
     vault: "We couldn't unlock your phrase with this passkey. Try your original passkey.",
-    prf: "That passkey isn't the one this account was created with. Try again and choose the usezecflow.xyz passkey you signed in with.",
+    prf: "That passkey isn't the one this account was created with. Try again and choose the zecflowlive.vercel.app passkey you signed in with.",
     record: "Your backup is correct, but we couldn't save that you finished. Try again.",
     crypto: "This browser can't use passkeys on this page.",
     failed: "Your passkey didn't respond. Try again.",

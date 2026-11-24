@@ -29,12 +29,12 @@ export const authReads = {
     const nonce = sampleHash(`nonce:${input.address}:${input.purpose}:${String(now)}`).slice(2, 18);
     const expiresAt = iso(now + CHALLENGE_TTL_MS);
     const message = [
-      `usezecflow.xyz wants you to ${input.purpose === "signIn" ? "sign in" : "sign"} with your account:`,
+      `zecflowlive.vercel.app wants you to ${input.purpose === "signIn" ? "sign in" : "sign"} with your account:`,
       input.address,
       "",
       statementOf(input, accountOf(runtime).profile.handle, nonce),
       "",
-      "URI: https://usezecflow.xyz",
+      "URI: https://zecflowlive.vercel.app",
       "Version: 1",
       `Chain ID: ${String(input.chainId)}`,
       `Nonce: ${nonce}`,

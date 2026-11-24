@@ -126,7 +126,7 @@ export const campaignCard = (world: DemoWorld, campaign: DemoCampaign, now: numb
     rewardAvailable: (ledger.available > 0n ? ledger.available : 0n).toString(),
     rewardTotal: ledger.netDeposited.toString(),
     settledSales: countsOf(salesOf(world, campaign.id)).finalized,
-    onchainUrl: `https://usezecflow.xyz/c/${campaign.id}`,
+    onchainUrl: `https://zecflowlive.vercel.app/c/${campaign.id}`,
     rankReasons: rankReasons(world, campaign, now),
   };
 };

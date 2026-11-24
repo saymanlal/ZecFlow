@@ -51,7 +51,7 @@ export const merchantView = async (store: Store, row: StoredRecord, privateField
     agreement: {
       ...agreement,
       publishedAt: "2026-10-12T00:00:00.000Z",
-      url: "https://usezecflow.xyz/terms",
+      url: "https://zecflowlive.vercel.app/terms",
     },
   });
 };

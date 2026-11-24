@@ -24,7 +24,10 @@ export function ZcashWalletPanel() {
 
   const zip321Result = useMemo(() => {
     if (!validAddress) {
-      return { uri: null, error: "Enter a valid Zcash Unified (utest1/u1), Sapling, or Transparent address." };
+      return {
+        uri: null,
+        error: "Enter a valid Zcash Unified (utest1/u1), Sapling, or Transparent address.",
+      };
     }
     try {
       const memo = encodeAttributionMemo({
@@ -59,7 +62,8 @@ export function ZcashWalletPanel() {
             Shielded Payout Address &amp; Payment URI
           </h2>
           <p className="text-body mt-1 text-sm">
-            Generate a ZIP-321 Zcash payment request with an encrypted Orchard attribution memo for Zashi, Ywallet, or Zingo!.
+            Generate a ZIP-321 Zcash payment request with an encrypted Orchard attribution memo for
+            Zashi, Ywallet, or Zingo!.
           </p>
         </div>
         {kind ? (
@@ -121,7 +125,11 @@ export function ZcashWalletPanel() {
           {zip321Result.error ? (
             <p className="text-pink text-xs font-medium">{zip321Result.error}</p>
           ) : zip321Result.uri ? (
-            <CopyField value={zip321Result.uri} label="Copy ZIP-321 URI" copiedMessage="ZIP-321 URI copied" />
+            <CopyField
+              value={zip321Result.uri}
+              label="Copy ZIP-321 URI"
+              copiedMessage="ZIP-321 URI copied"
+            />
           ) : null}
         </div>
 
@@ -136,7 +144,9 @@ export function ZcashWalletPanel() {
               </p>
             </>
           ) : (
-            <p className="text-muted text-center text-xs">Enter a valid Zcash address to render QR</p>
+            <p className="text-muted text-center text-xs">
+              Enter a valid Zcash address to render QR
+            </p>
           )}
         </div>
       </div>

@@ -25,7 +25,7 @@ export const SHOWN_FIELDS = [
 export const credentialIdOf = (key: string): string => sampleHash(`passkey:${key}`).slice(2, 46);
 
 export const exportUrlOf = (jobId: string): string =>
-  `https://usezecflow.xyz/demo/exports/${jobId}.json`;
+  `https://zecflowlive.vercel.app/demo/exports/${jobId}.json`;
 
 export const addressAt = (person: DemoPerson, index: number): Address => {
   const address = person.addresses[index];

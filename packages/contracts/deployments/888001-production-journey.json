@@ -31,12 +31,12 @@
     "availableRewards": "4900000"
   },
   "publicLinks": {
-    "campaign": "https://usezecflow.xyz/c/3",
-    "merchant": "https://usezecflow.xyz/m/scripted_sd_usd_demo",
-    "graph": "https://usezecflow.xyz/c/3/network",
-    "referral": "https://usezecflow.xyz/r/888001-8",
-    "settledReceipt": "https://usezecflow.xyz/receipts/888001/4",
-    "refundedReceipt": "https://usezecflow.xyz/receipts/888001/5"
+    "campaign": "https://zecflowlive.vercel.app/c/3",
+    "merchant": "https://zecflowlive.vercel.app/m/scripted_sd_usd_demo",
+    "graph": "https://zecflowlive.vercel.app/c/3/network",
+    "referral": "https://zecflowlive.vercel.app/r/888001-8",
+    "settledReceipt": "https://zecflowlive.vercel.app/receipts/888001/4",
+    "refundedReceipt": "https://zecflowlive.vercel.app/receipts/888001/5"
   },
   "transactions": {
     "createCampaign3": {

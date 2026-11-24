@@ -20,7 +20,8 @@ export const sharedCopy = {
     cancelled: "The passkey prompt closed before it finished. Nothing changed.",
     walletCancelled: "You cancelled this in your wallet. Nothing was sent.",
     prf: "This passkey can't hold a ZecFlow account. It was saved somewhere that doesn't support what ZecFlow needs. On desktop Chrome this usually means it went to the Chrome profile instead of Google Password Manager. Try again and save it to iCloud Keychain, Google Password Manager or 1Password, or use a wallet.",
-    prfOrphan: "You can delete the unused usezecflow.xyz passkey from your password manager.",
+    prfOrphan:
+      "You can delete the unused zecflowlive.vercel.app passkey from your password manager.",
     crypto: "This browser can't use passkeys on this page.",
     failed: "Your passkey didn't respond. Try again.",
   },
@@ -36,7 +37,8 @@ export const sharedCopy = {
   saveFailed: "Couldn't save. Try again.",
   testnet: "testnet",
   devChip: "Development account",
-  devTip: "This passkey works only on localhost. It's a separate account from usezecflow.xyz.",
+  devTip:
+    "This passkey works only on localhost. It's a separate account from zecflowlive.vercel.app.",
   copyAddress: "Copy address",
   addressCopied: "Address copied",
 } as const;

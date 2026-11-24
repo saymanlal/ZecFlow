@@ -22,7 +22,7 @@ export const fulfillmentReads = {
       saleId: sale.id,
       items: product.deliverables.map((deliverable) => ({
         id: deliverable.id,
-        url: `https://usezecflow.xyz/demo/files/${deliverable.id}`,
+        url: `https://zecflowlive.vercel.app/demo/files/${deliverable.id}`,
         expiresAt,
       })),
     };

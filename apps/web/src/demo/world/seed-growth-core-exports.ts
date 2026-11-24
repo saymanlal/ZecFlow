@@ -91,7 +91,7 @@ export const reportRows = (core: DemoCore, kind: CatalogueKind, scope: ExportSco
   counters[kind](factsOf(core, scope));
 
 export const exportUrl = (kind: string, n: number | string, format: ExportFormat): string =>
-  `https://usezecflow.xyz/demo/exports/zecflow-demo-SAMPLE-DATA-${kind}-${String(n)}.${format}`;
+  `https://zecflowlive.vercel.app/demo/exports/zecflow-demo-SAMPLE-DATA-${kind}-${String(n)}.${format}`;
 
 export interface ExportRequest {
   merchantId: string;

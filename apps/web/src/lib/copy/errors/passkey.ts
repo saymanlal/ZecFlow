@@ -23,12 +23,12 @@ export const passkeyErrors = {
   },
   PASSKEY_NOT_ALLOWED: {
     title: "Passkeys aren’t allowed here",
-    body: "This page can’t use a passkey for usezecflow.xyz. Open https://usezecflow.xyz directly, not inside another app’s browser, and try again.",
+    body: "This page can’t use a passkey for zecflowlive.vercel.app. Open https://zecflowlive.vercel.app directly, not inside another app’s browser, and try again.",
     recovery: ["Copy link", "Use a wallet"],
     retryable: "afterFix",
     variants: {
       localhost: {
-        body: "Development accounts work only on localhost and are separate from usezecflow.xyz accounts.",
+        body: "Development accounts work only on localhost and are separate from zecflowlive.vercel.app accounts.",
       },
     },
   },
@@ -46,7 +46,7 @@ export const passkeyErrors = {
   },
   CRYPTO_UNAVAILABLE: {
     title: "Secure connection required",
-    body: "Passkeys work only over HTTPS. Open https://usezecflow.xyz and try again.",
+    body: "Passkeys work only over HTTPS. Open https://zecflowlive.vercel.app and try again.",
     recovery: ["Open ZecFlow securely"],
     retryable: "afterFix",
   },

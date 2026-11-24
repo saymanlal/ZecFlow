@@ -1,7 +1,12 @@
 import { and, eq, inArray } from "drizzle-orm";
 import { records } from "../db/schema.js";
 import { z } from "zod";
-import { formatTokenAmount, invitation, zecFlowProtocolAbi, walletAddress } from "@zecflow/protocol";
+import {
+  formatTokenAmount,
+  invitation,
+  zecFlowProtocolAbi,
+  walletAddress,
+} from "@zecflow/protocol";
 import { present, type StoredRecord } from "../db/store.js";
 import { ApiProblem } from "../http/problem.js";
 import type { Services } from "../types.js";

@@ -12,7 +12,9 @@ vi.mock("@category-labs/mera", async (original) => ({
   ...(await original<Record<string, unknown>>()),
   getPasskeyPrfOutput: ceremony,
 }));
-const credential = { credentialId: Buffer.from("zecflow-notes-test-passkey").toString("base64url") };
+const credential = {
+  credentialId: Buffer.from("zecflow-notes-test-passkey").toString("base64url"),
+};
 const scope = { address: `0x${"a".repeat(40)}`, chainId: 888001, campaignId: "3" };
 const storage = new Map<string, string>();
 const outputs: Uint8Array[] = [];

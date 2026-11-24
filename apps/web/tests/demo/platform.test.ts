@@ -311,7 +311,9 @@ describe("platform: credentials, insights and graph export", () => {
     expect(manifest).toMatchObject({ schemaVersion: "demo-1", chainId: 888001 });
     expect(manifest.files.map((file) => file.rows).slice(0, 2)).toEqual([42, 40]);
     expect(
-      manifest.files.every((file) => file.url.startsWith("https://usezecflow.xyz/demo/exports/")),
+      manifest.files.every((file) =>
+        file.url.startsWith("https://zecflowlive.vercel.app/demo/exports/"),
+      ),
     ).toBe(true);
     expect(manifest.files.every((file) => /^[\da-f]{64}$/.test(file.sha256))).toBe(true);
     const roots = await client["graph.export"]({ ...input, depth: 1, saleStates: [] });

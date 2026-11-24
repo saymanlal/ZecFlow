@@ -35,8 +35,8 @@ export function AuroraDeposit({
               : fundingStates[deposit.state]}
         </h2>
         <p className="text-subtle mt-2 text-sm">
-          Aurora provides the funding status. ZecFlow verifies the USDC transfer on Zcash Mainnet (ZEC)
-          before showing it as received.
+          Aurora provides the funding status. ZecFlow verifies the USDC transfer on Zcash Mainnet
+          (ZEC) before showing it as received.
         </p>
       </div>
       {statusUnavailable || !deposit.statusAvailable ? (

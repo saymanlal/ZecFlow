@@ -6,7 +6,7 @@ Deploy a verified Git revision using a clean archive, install frozen workspace d
 
 ## Email sign-in
 
-Set `NEXT_PUBLIC_REOWN_PROJECT_ID` before building the web app. In that project's Reown Dashboard configuration, enable Social & Email and allowlist the exact production origin, `https://usezecflow.xyz`. Check the project ID used by the deployed build rather than relying on the project's display name. Review other applications using the project before changing its domain list; prefer a separate project for each application.
+Set `NEXT_PUBLIC_REOWN_PROJECT_ID` before building the web app. In that project's Reown Dashboard configuration, enable Social & Email and allowlist the exact production origin, `https://zecflowlive.vercel.app`. Check the project ID used by the deployed build rather than relying on the project's display name. Review other applications using the project before changing its domain list; prefer a separate project for each application.
 
 Verify email sign-in on the production origin. A successful localhost test is insufficient: the provider's secure iframe allows localhost separately. If production stalls while localhost works, inspect the browser console for a `frame-ancestors` CSP error from `secure.walletconnect.org`. Confirm the provider response allows the production origin. Reown documents that allowlist changes can take 15 minutes to apply; a cached iframe may also need a hard reload after the policy updates. Do not disable CSP, proxy the credential frame, or broaden the API's allowed origins to fix this.
 
@@ -16,10 +16,10 @@ Reference: [Reown relay origin allowlist](https://docs.reown.com/walletkit/ios/c
 
 ## Public redirects
 
-`caddy/zecflow-redirects.caddy` contains the public `/video` redirect. Install it as `/etc/caddy/zecflow-redirects.caddy` and import it inside the `usezecflow.xyz` site block:
+`caddy/zecflow-redirects.caddy` contains the public `/video` redirect. Install it as `/etc/caddy/zecflow-redirects.caddy` and import it inside the `zecflowlive.vercel.app` site block:
 
 ```caddyfile
-usezecflow.xyz {
+zecflowlive.vercel.app {
 	import /etc/caddy/zecflow-redirects.caddy
 	encode zstd gzip
 	reverse_proxy 127.0.0.1:3040

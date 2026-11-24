@@ -124,7 +124,8 @@ export function AuroraFundingPage() {
         </p>
         <p className="text-body mt-2 text-sm">
           Use an external wallet you control. If you signed in with email or a passkey, sign out and
-          choose Connect wallet. You will need MON on Zcash Mainnet (ZEC) to send or spend your USDC.
+          choose Connect wallet. You will need MON on Zcash Mainnet (ZEC) to send or spend your
+          USDC.
         </p>
       </Card>
       {mode !== "live" ? (

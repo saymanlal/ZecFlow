@@ -71,7 +71,14 @@ describe("sale and share state", () => {
 
 describe("shell routing", () => {
   it("treats product pages anyone can open as public, and workspace pages as private", () => {
-    for (const path of ["/explore", "/c/7", "/c/7/network", "/r/abc", "/receipts/888001/9", "/demo"])
+    for (const path of [
+      "/explore",
+      "/c/7",
+      "/c/7/network",
+      "/r/abc",
+      "/receipts/888001/9",
+      "/demo",
+    ])
       expect(isPublicPath(path)).toBe(true);
     for (const path of ["/earn", "/sell/vault", "/settings/profile", "/purchases", "/cart"])
       expect(isPublicPath(path)).toBe(false);

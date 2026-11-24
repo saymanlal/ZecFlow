@@ -62,7 +62,7 @@ export const graphExportReads = {
       `graph-export:${JSON.stringify([input.scope, input.campaignId ?? null, input.depth, input.saleStates, input.period, input.format, input.scope === "mine" ? runtime.personaId() : null])}`,
     ).slice(2, 18);
     const file = (name: string, rows: readonly string[]) => ({
-      url: `https://usezecflow.xyz/demo/exports/${key}/sample-${name}.${input.format}`,
+      url: `https://zecflowlive.vercel.app/demo/exports/${key}/sample-${name}.${input.format}`,
       rows: rows.length,
       sha256: sampleHash(`graph-export:${key}:${name}:${rows.join(",")}`).slice(2),
     });

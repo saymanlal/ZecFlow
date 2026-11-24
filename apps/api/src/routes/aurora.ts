@@ -10,7 +10,11 @@ import { ApiProblem } from "../http/problem.js";
 export const auroraRoutes = (services: Services, configured?: AuroraService) => {
   const service =
     configured ??
-    createAuroraService(services.store, null, createAuroraConfirmation("https://rpc.usezecflow.xyz"));
+    createAuroraService(
+      services.store,
+      null,
+      createAuroraConfirmation("https://rpc.usezecflow.xyz"),
+    );
   const app = router();
   route(app, services, "GET", "/funding/aurora", "public", async (c) =>
     ok(c, await service.config()),

@@ -88,7 +88,7 @@ beforeEach(async () => {
   vi.resetModules();
   vi.clearAllMocks();
   vi.useFakeTimers();
-  vi.stubGlobal("location", { origin: "https://usezecflow.xyz" });
+  vi.stubGlobal("location", { origin: "https://zecflowlive.vercel.app" });
   fake.emailEnabled = true;
   fake.account = undefined;
   fake.connection = { status: "disconnected", address: "" };

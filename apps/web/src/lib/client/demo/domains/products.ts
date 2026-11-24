@@ -125,7 +125,7 @@ export const productsWrites = {
       kind: input.file.type.startsWith("image/") ? ("image" as const) : ("download" as const),
       size: input.file.size,
       sha256: hash,
-      url: `https://usezecflow.xyz/demo/files/${hash.slice(0, 16)}`,
+      url: `https://zecflowlive.vercel.app/demo/files/${hash.slice(0, 16)}`,
     };
     runtime.world.assets.push({ productId: product.id, asset });
     return asset;
