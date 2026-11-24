@@ -1,0 +1,44 @@
+name: zecflow-distribution
+description: Canonical referral and settlement events on Zcash Testnet (TAZ)
+rollback_on_reorg: true
+address_format: lowercase
+raw_events: true
+full_batch_size: 1000
+contracts:
+  - name: ZecFlowProtocol
+    abi_file_path: ./abis/ZecFlowProtocol.json
+    events:
+      - event: CampaignCreated
+      - event: CampaignFunded
+      - event: CampaignStatusChanged
+      - event: MerchantProceedsClaimed
+      - event: NativePurchaseAccepted
+      - event: NodeCreated
+      - event: PolicyVersionRegistered
+      - event: RewardClaimed
+      - event: RewardReserved
+      - event: RewardVested
+      - event: SaleFinalized
+      - event: SaleRefunded
+      - event: SurplusReturned
+  - name: ZecFlowToken
+    abi_file_path: ./abis/ZecFlowToken.json
+    events:
+      - event: Transfer
+chains:
+  - id: 888001
+    start_block: 70445279
+    block_lag: 2
+    rpc:
+      url: "${ZCASH_RPC_URL}"
+      for: realtime
+      polling_interval: 5000
+      initial_block_interval: 5
+      interval_ceiling: 5
+      query_timeout_millis: 20000
+      backoff_millis: 2000
+    contracts:
+      - name: ZecFlowProtocol
+        address: "0x1Fa5e94e44DB2101664C0a24dBf1e52912af3eca"
+      - name: ZecFlowToken
+        address: "0xb6279237003eD710bB4ccE6fbd126e07eD4D8E23"

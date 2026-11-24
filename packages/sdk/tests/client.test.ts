@@ -1,0 +1,83 @@
+import { describe, expect, it, vi } from "vitest";
+import { clientRoutes } from "@zecflow/protocol";
+import { createZecFlowClient, publicReadMethods, ZecFlowApiError } from "../src/index.js";
+
+const reply = (data: unknown) =>
+  Response.json({
+    requestId: "req_test",
+    timestamp: new Date().toISOString(),
+    schemaVersion: "3.0",
+    chainId: 888001,
+    contractAddress: null,
+    blockNumber: null,
+    indexingStatus: "syncing",
+    data,
+  });
+describe("public read client", () => {
+  it("validates input and response and sends credential-free public requests", async () => {
+    let captured: { url: string; credentials: RequestCredentials | undefined } | null = null;
+    const client = createZecFlowClient({
+      baseUrl: "https://api.usezecflow.xyz",
+      fetch: (url, options) => {
+        captured = {
+          url: url instanceof URL ? url.href : typeof url === "string" ? url : url.url,
+          credentials: options?.credentials,
+        };
+        return Promise.resolve(reply({ contracts: [] }));
+      },
+    });
+    expect(await client.read("system.contracts", {})).toEqual({ contracts: [] });
+    expect(captured).toEqual({
+      url: "https://api.usezecflow.xyz/v1/system/contracts",
+      credentials: "omit",
+    });
+    expect(await client.readEnvelope("system.contracts", {})).toMatchObject({
+      chainId: 888001,
+      indexingStatus: "syncing",
+      data: { contracts: [] },
+    });
+  });
+  it("retains the server request ID and typed retryability", async () => {
+    const client = createZecFlowClient({
+      baseUrl: "https://api.usezecflow.xyz",
+      fetch: () =>
+        Promise.resolve(
+          Response.json(
+            {
+              error: {
+                code: "INDEXER_LAGGING",
+                message: "Wait for indexing.",
+                requestId: "req_real",
+                retryable: true,
+              },
+            },
+            { status: 503 },
+          ),
+        ),
+    });
+    await expect(client.read("system.contracts", {})).rejects.toMatchObject<Partial<ZecFlowApiError>>(
+      { code: "INDEXER_LAGGING", requestId: "req_real", retryable: true, status: 503 },
+    );
+  });
+  it("rejects malformed live success instead of returning an untyped object", async () => {
+    const client = createZecFlowClient({
+      baseUrl: "https://api.usezecflow.xyz",
+      fetch: () => Promise.resolve(reply({ contracts: [{ sourceVerified: "yes" }] })),
+    });
+    await expect(client.read("system.contracts", {})).rejects.toThrow();
+  });
+  it("exposes only credential-free GET routes", () => {
+    expect(new Set(publicReadMethods).size).toBe(publicReadMethods.length);
+    for (const method of publicReadMethods) {
+      expect(clientRoutes[method]).toMatchObject({ verb: "GET", auth: "public" });
+    }
+  });
+  it("refuses non-public methods from untyped consumers before transport", async () => {
+    const transport = vi.fn<typeof fetch>();
+    const client = createZecFlowClient({ baseUrl: "https://api.usezecflow.xyz", fetch: transport });
+    await expect(
+      Reflect.apply(client.read.bind(client), client, ["account.me", {}]),
+    ).rejects.toThrow(TypeError);
+    expect(transport).not.toHaveBeenCalled();
+  });
+});

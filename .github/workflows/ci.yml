@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_OPTIONS: --max-old-space-size=4096
+      NEXT_PUBLIC_CHAIN_ID: "31337"
+      NEXT_PUBLIC_API_URL: http://localhost:8740
+      TEST_DATABASE_URL: postgres://spoke:spoke@127.0.0.1:5432/spoke_test
+      TEST_GAS_RPC_URL: http://127.0.0.1:20545
+      JOURNEY_RPC_URL: http://127.0.0.1:19546
+      JOURNEY_DATABASE_URL: postgres://spoke:spoke@127.0.0.1:5432/spoke_journey
+    services:
+      postgres:
+        image: postgres:16.10-bookworm
+        env:
+          POSTGRES_USER: spoke
+          POSTGRES_PASSWORD: spoke
+          POSTGRES_DB: spoke_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U spoke -d spoke_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Set up Node 24
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "24"
+      - name: Set up pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413
+        with:
+          cache: true
+      - name: Set up Foundry
+        uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09
+        with:
+          version: v1.5.1
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Generate and check indexer types
+        working-directory: indexer
+        env:
+          MONAD_RPC_URL: http://127.0.0.1:1
+        run: |
+          pnpm install --ignore-workspace --frozen-lockfile
+          pnpm codegen
+          pnpm typecheck
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Check formatting
+        run: pnpm format:check
+      - name: Check Solidity formatting
+        run: forge fmt --check
+        working-directory: packages/contracts
+      - name: Contract tests
+        run: pnpm contracts:test
+      - name: Check generated ABIs match the interface
+        run: pnpm abi && git diff --exit-code packages/protocol/src/abi
+      - name: Start local integration chains
+        run: |
+          docker exec '${{ job.services.postgres.id }}' createdb -U spoke spoke_journey
+          anvil --port 20545 --chain-id 10143 --silent > "$RUNNER_TEMP/spoke-gas-anvil.log" 2>&1 &
+          anvil --port 19546 --chain-id 31337 --silent > "$RUNNER_TEMP/spoke-journey-anvil.log" 2>&1 &
+          curl --fail --silent --retry 10 --retry-delay 1 --retry-connrefused --header 'Content-Type: application/json' --data '{"jsonrpc":"2.0","id":1,"method":"eth_chainId","params":[]}' http://127.0.0.1:20545
+          curl --fail --silent --retry 10 --retry-delay 1 --retry-connrefused --header 'Content-Type: application/json' --data '{"jsonrpc":"2.0","id":1,"method":"eth_chainId","params":[]}' http://127.0.0.1:19546
+      - name: Test
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Verify SDK package in an isolated consumer
+        run: pnpm --filter @enochid/spoke-sdk release:check

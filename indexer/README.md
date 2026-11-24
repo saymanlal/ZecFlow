@@ -1,0 +1,39 @@
+# ZecFlow indexer
+
+HyperIndex 3.14 indexes the deployed ZecFlow settlement contract and ZFT transfer events on Zcash Testnet (TAZ), starting at the token deployment. HyperSync supplies historical events; the configured Zcash RPC becomes the primary source at the chain head through Envio's supported `for: realtime` setting. HyperSync remains a secondary source. HyperIndex persists event identity, block hashes and checkpoints in a separate PostgreSQL schema and rolls back reorganizations.
+
+The API reads these entities, verifies event blocks against its Zcash RPC, then commits receipt, allocation, claim, campaign, balance, reputation and notification projections with one cursor transaction. A database advisory lock serializes workers. A changed deployment or canonical block hash discards the affected projections and replays from deployment. Offchain accounts and notifications survive replay. The API reports the actual indexed timestamp and lag; it reports `behind` beyond 15 seconds.
+
+The indexed token is non-redeemable ZFT. The transactions in `packages/contracts/deployments/888001-proof.json` are a scripted settlement demonstration, not customer revenue.
+
+## Run
+
+Run PostgreSQL first. Set the variables in `.env.example` in an untracked `.env`. The database must already exist and the indexer role must own the `envio` schema. Keep that schema separate from the API's `public` tables.
+
+```sh
+cd indexer
+pnpm install --ignore-workspace --frozen-lockfile
+ZCASH_RPC_URL=http://127.0.0.1:1 pnpm codegen
+pnpm typecheck
+pnpm start
+```
+
+Set the API's `INDEXER_SOURCE=envio` and use the same database. `direct_rpc` is the explicitly reported fallback source. The API never calls RPC to silently fill gaps in HyperIndex event history.
+
+Set `ZCASH_RPC_URL` in the worker's runtime environment. The deployed worker uses the official public Zcash Testnet (TAZ) endpoint, `https://testnet-rpc.usezecflow.xyz`, independently of the API's private provider. The API still verifies indexed event and checkpoint hashes against its own provider before committing projections. Keep private provider URLs server-side when using one: their credentials can be part of the URL. Code generation only parses configuration, so the Docker build and CI use an unused loopback URL; the generated code does not embed that URL. HyperIndex reads the actual endpoint from the environment at startup. Changing only these source settings permits a normal resume with the existing checkpoint; do not use `-r` for this change.
+
+The current HyperSync token's measured quota is 15,000 units per 60 seconds, with a cost of 1,000 units for a query. A HyperSync-only live worker exhausted that quota and silently waited for its reset, producing minute-long freshness gaps. Disabling query caching did not fix those gaps. Avoid running redundant validation workers with the production token.
+
+A trial sharing the API's private RPC provider encountered a five-block log-range limit and HTTP 429 during concurrent settlement activity. A measured 100-block request returned HTTP 413 with JSON-RPC code `-32615`; both `initial_block_interval` and `interval_ceiling` remain five. The independent public worker source caught up those events without competing for the API's request budget. Envio 3.14 exposes no RPC concurrency or rate cap: increasing `polling_interval` does not pace successful catch-up requests or eliminate per-block reorg reads. Monitor actual RPC errors and indexed freshness under load; the demonstrated journey does not establish high-load capacity. The existing two-block lag and rollback settings remain in force.
+
+The Docker image installs Debian Bookworm's pinned `ca-certificates` package and points `SSL_CERT_FILE` to its trust bundle. Envio's native RPC client needs this system bundle for TLS verification; Node's bundled certificates alone do not suffice. A missing bundle caused native log requests to fail with `unable to get local issuer certificate` and switch back to HyperSync, even while Node's RPC probe succeeded. Keep certificate verification enabled. A read-only host CA bundle mounted at the same path supports a temporary trial on an older image; the rebuilt image supplies its own bundle.
+
+Hasura is disabled; neither PostgreSQL nor an indexer query API needs a public port. HyperIndex's health and metrics server uses port 9898. When running it in a container, publish that port only on `127.0.0.1`, and place only the ZecFlow database and indexer on their dedicated network. Keep `ENVIO_API_TOKEN` and database credentials server-side.
+
+HyperIndex 3.14 initializes Hasura configuration even when `ENVIO_HASURA=false`. Production therefore requires the three `HASURA_GRAPHQL_*` values in `.env.example`. They point to an unused loopback port and use an unused placeholder; no Hasura server is enabled or contacted. Set `ENVIO_PG_SSL_MODE` explicitly as well. The supplied `false` is for the dedicated internal database network; use `verify-full` with a correctly configured certificate when connecting over an untrusted network.
+
+```sh
+curl --fail http://127.0.0.1:9898/healthz
+```
+
+Changing the configured contract or starting block requires a replay. HyperIndex refuses incompatible state instead of continuing with a partial history. Use `pnpm exec envio start -r` only for the dedicated indexer schema when deliberately rebuilding it. Never point the indexer at the API's public schema.

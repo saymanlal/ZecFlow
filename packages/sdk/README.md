@@ -1,0 +1,78 @@
+# ZecFlow public read SDK
+
+A typed, credential-free client for 32 public ZecFlow API methods. Version **0.1.3** targets API `/v1`, schema `3.0`, and the current Zcash Testnet (TAZ) deployment. Monetary amounts remain base-unit strings.
+
+## Install
+
+Install the versioned package from npm:
+
+```bash
+npm install @zecflow/sdk@0.1.3
+```
+
+Version 0.1.3 adds the current Passport and Network Activity response types without changing the 32 public methods. The npm package matches the verified GitHub release archive.
+
+The archive includes compiled ESM/CommonJS and TypeScript declarations. It bundles the shared protocol schemas, so consumers do not need the ZecFlow monorepo or `@zecflow/protocol`. Node.js 22 or later is supported. Browser integrations require native `fetch` and `AbortSignal.timeout`; their API deployment must also allow the browser origin through CORS. A server-side integration works without browser CORS restrictions. Browser credentials are always omitted.
+
+## Read a receipt
+
+```ts
+import { createZecFlowClient, ZecFlowApiError } from "@zecflow/sdk";
+
+const spoke = createZecFlowClient({ baseUrl: "https://api.usezecflow.xyz" });
+
+try {
+  const receipt = await spoke.read("receipts.get", { saleId: "4", chainId: 888001 });
+  console.log(receipt);
+} catch (error) {
+  if (error instanceof ZecFlowApiError) {
+    console.error(error.code, error.status, error.requestId, error.retryable);
+  } else {
+    throw error;
+  }
+}
+```
+
+Pass the API origin, without `/v1`. CommonJS consumers can use `require("@zecflow/sdk")`. Every request validates both its input and the successful response against the bundled shared Zod contract.
+
+## Retain freshness and chain context
+
+```ts
+const result = await spoke.readEnvelope("receipts.get", { saleId: "4", chainId: 888001 });
+console.log(result.requestId, result.chainId, result.blockNumber, result.indexingStatus);
+console.log(result.data);
+```
+
+Indexing metadata describes a derived view. Check canonical receipts and contracts when settlement certainty matters. The hosted deployment uses non-redeemable ZFT on Zcash Testnet (TAZ), not real-money mainnet settlement.
+
+## Methods and types
+
+`publicReadMethods` lists all 32 supported methods. They cover campaigns, products, merchants, links, graphs, checkout previews, receipts, distributor profiles, networks, tokens and system status. `ZecFlowReadInput<M>` and `ZecFlowReadOutput<M>` expose per-method types. `ZecFlowReadEnvelope<M>` describes the envelope; `ZecFlowReadClient` is the client type.
+
+Paginated reads accept an opaque `cursor` and return `nextCursor`. Pass the returned cursor to the same method with the same filters; stop when it is null. Do not infer page numbers or create cursor strings yourself. The [method reference](https://docs.usezecflow.xyz/reference/overview) lists the exact shapes.
+
+## Errors and transport
+
+`ZecFlowApiError` retains a structured server error's code, HTTP status, request ID and retryability. Input/response validation failures are Zod errors. Network failures, timeouts and invalid JSON can throw native transport/parsing errors; do not assume every rejection is a `ZecFlowApiError`.
+
+Each request has a ten-second timeout. There are no automatic retries: callers decide bounded backoff for retryable reads. An optional `fetch` implementation supports framework integration and tests; it must respect the supplied signal and `credentials: "omit"`. Never pass private server RPC credentials as the API origin.
+
+The SDK only reads public data. It does not sign transactions, hold keys, maintain authenticated sessions, issue claims or implement checkout writes. Runtime calls outside `publicReadMethods` are refused.
+
+## Versions and releases
+
+Pin exact SDK versions for repeatable integrations. Before 1.0, breaking changes increment the minor version; compatible fixes increment the patch version. The first release validates schema 3.0 responses, but the HTTP deployment is independently versioned and an SDK update may be required when its contract changes. Read [CHANGELOG.md](CHANGELOG.md) before upgrading.
+
+Maintainers build and check an isolated installation before publication:
+
+```bash
+pnpm --filter @zecflow/sdk build
+pnpm --filter @zecflow/sdk release:check
+pnpm --filter @zecflow/sdk exec npm pack --ignore-scripts
+```
+
+`release:check` installs the actual packed archive in a temporary project, checks the file allowlist, loads both module formats and typechecks ESM/CommonJS consumers. Publish that verified archive, never the repository root. npm registry publication requires access to the `@enochid` scope and a valid npm login. The [public release](https://github.com/saymanlal/ZecFlow/releases/tag/sdk-v0.1.3) also includes the same archive and a SHA-256 checksum.
+
+The [application source](https://github.com/saymanlal/ZecFlow), SDK package, [documentation](https://docs.usezecflow.xyz) and release notes are public. Follow [@usezecflow_ on X](https://x.com/usezecflow_) for product updates.
+
+Version 0.1.2 moves public registry distribution to `@zecflow/sdk`. If you installed the earlier GitHub archive as `@zecflow/sdk`, uninstall that dependency, install the new package, and replace imports with `@zecflow/sdk`. The client methods and runtime behavior are unchanged.
