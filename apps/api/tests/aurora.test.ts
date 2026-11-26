@@ -117,7 +117,7 @@ describe.skipIf(!databaseUrl)(
     it("exposes only supported source networks and canonical mainnet USDC, with cached token discovery", async () => {
       const live = client();
       const config = await live.call("funding.auroraConfig", {});
-      expect(config.destinationChainId).toBe(143);
+      expect(config.destinationChainId).toBe(888000);
       expect(config.sources.map((asset) => asset.chainId)).toEqual([8453]);
       expect(config.destinations.map((asset) => asset.symbol)).toEqual(["USDC"]);
       await live.call("funding.auroraConfig", {});
@@ -190,7 +190,7 @@ describe.skipIf(!databaseUrl)(
       const updated = await live.call("funding.auroraDeposit", { id: deposit.id });
       expect(updated.state).toBe("SUCCESS");
       expect(updated.confirmation.state).toBe("pending");
-      expect(updated.destinationChainId).toBe(143);
+      expect(updated.destinationChainId).toBe(888000);
     });
 
     it("reports missing configuration and preserves saved instructions during a provider outage", async () => {

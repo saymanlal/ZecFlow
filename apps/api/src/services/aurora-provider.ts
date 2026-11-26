@@ -11,7 +11,7 @@ export const auroraNetworks = {
   pol: { chainId: 137, networkName: "Polygon" },
   avax: { chainId: 43114, networkName: "Avalanche" },
   bsc: { chainId: 56, networkName: "BNB Chain" },
-  zec: { chainId: 143, networkName: "Zcash Mainnet (ZEC)" },
+  zcash: { chainId: 888000, networkName: "Zcash Mainnet (ZEC)" },
 } as const;
 
 const token = z.object({

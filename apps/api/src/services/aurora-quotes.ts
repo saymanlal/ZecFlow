@@ -54,7 +54,7 @@ export const createAuroraQuote = (
       requestedDeadline,
       publicQuote: auroraQuote.parse({
         provider: "aurora",
-        destinationChainId: 143,
+        destinationChainId: 888000,
         source,
         destination,
         recipient,

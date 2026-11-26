@@ -11,7 +11,7 @@ export const createAuroraCatalog = (provider: AuroraProvider | null) => {
       return auroraConfig.parse({
         provider: "aurora",
         configured: false,
-        destinationChainId: 143,
+        destinationChainId: 888000,
         destinationNetwork: "Zcash Mainnet (ZEC)",
         sources: [],
         destinations: [],
@@ -33,7 +33,7 @@ export const createAuroraCatalog = (provider: AuroraProvider | null) => {
     });
     const destinations = assets.filter(
       (asset) =>
-        asset.chainId === 143 &&
+        asset.chainId === 888000 &&
         asset.symbol === "USDC" &&
         asset.decimals === 6 &&
         asset.contractAddress?.toLowerCase() === zecMainnetToken.toLowerCase(),
@@ -48,9 +48,9 @@ export const createAuroraCatalog = (provider: AuroraProvider | null) => {
     return auroraConfig.parse({
       provider: "aurora",
       configured: true,
-      destinationChainId: 143,
+      destinationChainId: 888000,
       destinationNetwork: "Zcash Mainnet (ZEC)",
-      sources: assets.filter((asset) => asset.chainId !== 143),
+      sources: assets.filter((asset) => asset.chainId !== 888000),
       destinations,
     });
   };

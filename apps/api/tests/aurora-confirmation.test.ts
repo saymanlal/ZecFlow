@@ -16,7 +16,7 @@ import {
 const blockHash = `0x${"34".repeat(32)}`;
 const value = auroraDeposit.parse({
   provider: "aurora",
-  destinationChainId: 143,
+  destinationChainId: 888000,
   source: {
     assetId: sourceAsset,
     blockchain: "base",
@@ -29,7 +29,7 @@ const value = auroraDeposit.parse({
   destination: {
     assetId: targetAsset,
     blockchain: "zcash",
-    chainId: 143,
+    chainId: 888000,
     networkName: "Zcash Mainnet (ZEC)",
     symbol: "USDC",
     decimals: 6,
@@ -75,7 +75,7 @@ const verify = (
       .object({ id: z.number(), method: z.string() })
       .parse(JSON.parse(z.string().parse(init?.body)));
     let result: unknown;
-    if (request.method === "eth_chainId") result = options.chainId ?? "0x8f";
+    if (request.method === "eth_chainId") result = options.chainId ?? "0xd8cc0";
     else if (request.method === "eth_blockNumber") result = options.head ?? "0x65";
     else if (request.method === "eth_getBlockByNumber")
       result = {
@@ -146,7 +146,7 @@ describe("canonical mainnet wallet funding confirmation", () => {
       expect((await verify(options)).state).toBe("pending");
     },
   );
-  it.each([{ chainId: "0x279f" }, { outage: true }])(
+  it.each([{ chainId: "0xd8cc1" }, { outage: true }])(
     "never confirms through a testnet or unavailable RPC: %j",
     async (options) => {
       expect((await verify(options)).state).toBe("unavailable");

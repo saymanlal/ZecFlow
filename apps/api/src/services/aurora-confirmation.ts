@@ -26,7 +26,7 @@ export const createAuroraConfirmation = (rpcUrl: string, fetcher: typeof fetch =
       }),
     });
     try {
-      if ((await client.getChainId()) !== 143)
+      if ((await client.getChainId()) !== 888000)
         return { state: "unavailable", txHash: null, blockNumber: null };
       const head = await client.getBlockNumber();
       for (const hash of deposit.destinationTxHashes) {

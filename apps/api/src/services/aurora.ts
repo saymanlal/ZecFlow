@@ -100,7 +100,7 @@ export const createAuroraService = (
             providerInactiveAt: result.quote.timeWhenInactive,
           });
           await store.audit(owner, "wallet.fundingInstructionsCreated", id, {
-            destinationChainId: 143,
+            destinationChainId: 888000,
           });
           return deposit;
         },

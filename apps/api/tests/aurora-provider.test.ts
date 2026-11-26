@@ -35,7 +35,7 @@ describe("Aurora token catalog wire format", () => {
       { ...base, contractAddress: null, chainId: 8453, networkName: "Base" },
     ]);
     expect(config.destinations).toEqual([
-      { ...zec, chainId: 143, networkName: "Zcash Mainnet (ZEC)" },
+      { ...zec, chainId: 888000, networkName: "Zcash Mainnet (ZEC)" },
     ]);
     expect(config).not.toHaveProperty("asset_stats");
   });

@@ -9,7 +9,7 @@ const request = (method = "eth_chainId") => ({
   method: "POST",
   body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params: [] }),
 });
-const reply = () => Response.json({ jsonrpc: "2.0", id: 1, result: "0x279f" });
+const reply = () => Response.json({ jsonrpc: "2.0", id: 1, result: "0xd8cc1" });
 afterEach(() => vi.useRealTimers());
 
 describe("shared RPC scheduling", () => {
