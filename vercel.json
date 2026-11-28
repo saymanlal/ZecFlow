@@ -1,5 +1,0 @@
-{
-  "buildCommand": "pnpm --filter @zecflow/web build",
-  "framework": "nextjs",
-  "installCommand": "pnpm install --frozen-lockfile"
-}
