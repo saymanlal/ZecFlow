@@ -464,12 +464,19 @@ export const catalogRoutes = (services: Services) => {
     const contract = await chain.ready();
     const head = await chain.client.getBlock();
     const blockNumber = typeof head.number === "bigint" ? head.number : undefined;
-    const total = await chain.client.readContract({
-      address: contract,
-      abi: zecFlowProtocolAbi,
-      functionName: "totalCampaigns",
-      ...(blockNumber === undefined ? {} : { blockNumber }),
-    });
+    const total =
+      blockNumber === undefined
+        ? await chain.client.readContract({
+            address: contract,
+            abi: zecFlowProtocolAbi,
+            functionName: "totalCampaigns",
+          })
+        : await chain.client.readContract({
+            address: contract,
+            abi: zecFlowProtocolAbi,
+            functionName: "totalCampaigns",
+            blockNumber,
+          });
     for (let id = 1n; id <= total; id++) {
       const fresh = await chain.campaign(id.toString(), blockNumber);
       if (
