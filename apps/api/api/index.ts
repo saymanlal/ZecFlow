@@ -8,7 +8,9 @@ const getApp = () =>
     throw err;
   }));
 
-export default async function handler(req: Request): Promise<Response> {
-  const { app } = await getApp();
-  return app.fetch(req);
-}
+export default {
+  async fetch(request: Request): Promise<Response> {
+    const { app } = await getApp();
+    return app.fetch(request);
+  },
+};
