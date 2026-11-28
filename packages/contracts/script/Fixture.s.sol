@@ -53,10 +53,18 @@ contract Fixture is FixtureBase {
         ZecFlowToken token = ZecFlowToken(tokenAddress);
         IZecFlowProtocol protocol = IZecFlowProtocol(protocolAddress);
         campaignA = _campaign(
-            token, protocol, "FIXTURE_MERCHANT_A_KEY", keccak256("zecflow-v3-proof-campaign-a"), 10e6
+            token,
+            protocol,
+            "FIXTURE_MERCHANT_A_KEY",
+            keccak256("zecflow-v3-proof-campaign-a"),
+            10e6
         );
         campaignB = _campaign(
-            token, protocol, "FIXTURE_MERCHANT_B_KEY", keccak256("zecflow-v3-proof-campaign-b"), 5e6
+            token,
+            protocol,
+            "FIXTURE_MERCHANT_B_KEY",
+            keccak256("zecflow-v3-proof-campaign-b"),
+            5e6
         );
         uint256 a = _node(protocol, campaignA, 0, "FIXTURE_A_KEY");
         uint256 b = _node(protocol, campaignA, a, "FIXTURE_B_KEY");
