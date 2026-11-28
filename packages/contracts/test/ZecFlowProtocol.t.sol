@@ -32,7 +32,9 @@ contract ZecFlowProtocolTest is ZecFlowFixture {
         assertEq(token.balanceOf(buyer), beforeBalance);
         assertEq(protocol.getRewardLedger(campaignId).available, 100_000);
         vm.warp(block.timestamp + 60);
-        vm.expectRevert(abi.encodeWithSelector(IZecFlowProtocol.SaleAlreadyRefunded.selector, saleId));
+        vm.expectRevert(
+            abi.encodeWithSelector(IZecFlowProtocol.SaleAlreadyRefunded.selector, saleId)
+        );
         protocol.finalizeSale(saleId);
         _assertConservation();
     }
@@ -116,7 +118,9 @@ contract ZecFlowProtocolTest is ZecFlowFixture {
         vm.prank(stranger);
         protocol.purchase(campaignId, leaf, bytes32(uint256(1)));
         vm.expectRevert(
-            abi.encodeWithSelector(IZecFlowProtocol.BuyerAlreadyPurchased.selector, campaignId, buyer)
+            abi.encodeWithSelector(
+                IZecFlowProtocol.BuyerAlreadyPurchased.selector, campaignId, buyer
+            )
         );
         vm.prank(buyer);
         protocol.purchase(campaignId, 0, bytes32(uint256(2)));
@@ -124,7 +128,9 @@ contract ZecFlowProtocolTest is ZecFlowFixture {
     }
 
     function test_unusedWithdrawalRequiresPausedEndedOrExpired() public {
-        vm.expectRevert(abi.encodeWithSelector(IZecFlowProtocol.CampaignActive.selector, campaignId));
+        vm.expectRevert(
+            abi.encodeWithSelector(IZecFlowProtocol.CampaignActive.selector, campaignId)
+        );
         vm.prank(merchant);
         protocol.refundUnusedRewardBudget(campaignId);
         _buy(buyer, leaf, bytes32(uint256(1)));
@@ -220,7 +226,9 @@ contract ZecFlowProtocolTest is ZecFlowFixture {
         protocol.fundCampaign(other, 10);
         protocol.activateCampaign(other);
         vm.stopPrank();
-        vm.expectRevert(abi.encodeWithSelector(IZecFlowProtocol.InvalidParent.selector, other, leaf));
+        vm.expectRevert(
+            abi.encodeWithSelector(IZecFlowProtocol.InvalidParent.selector, other, leaf)
+        );
         vm.prank(distributors[4]);
         protocol.createNode(other, leaf, bytes32(0));
         vm.expectRevert(

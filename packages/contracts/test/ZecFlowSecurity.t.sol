@@ -100,10 +100,14 @@ contract ZecFlowSecurityTest is ZecFlowFixture {
     function test_unsupportedDecimalsAndMissingCodeCannotBeConfigured() public {
         TransferQuirkToken wrongDecimals = new TransferQuirkToken(18);
         vm.expectRevert(
-            abi.encodeWithSelector(IZecFlowProtocol.TokenNotAllowed.selector, address(wrongDecimals))
+            abi.encodeWithSelector(
+                IZecFlowProtocol.TokenNotAllowed.selector, address(wrongDecimals)
+            )
         );
         new ZecFlowProtocol(address(wrongDecimals));
-        vm.expectRevert(abi.encodeWithSelector(IZecFlowProtocol.TokenNotAllowed.selector, address(1)));
+        vm.expectRevert(
+            abi.encodeWithSelector(IZecFlowProtocol.TokenNotAllowed.selector, address(1))
+        );
         new ZecFlowProtocol(address(1));
     }
 

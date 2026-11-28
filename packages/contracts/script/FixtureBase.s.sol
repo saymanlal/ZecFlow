@@ -70,10 +70,12 @@ abstract contract FixtureBase is Script {
         vm.stopBroadcast();
     }
 
-    function _node(IZecFlowProtocol protocol, uint256 campaignId, uint256 parent, string memory actor)
-        internal
-        returns (uint256 id)
-    {
+    function _node(
+        IZecFlowProtocol protocol,
+        uint256 campaignId,
+        uint256 parent,
+        string memory actor
+    ) internal returns (uint256 id) {
         vm.startBroadcast(vm.envUint(actor));
         id = protocol.createNode(campaignId, parent, keccak256(bytes(actor)));
         vm.stopBroadcast();
